@@ -79,7 +79,7 @@
                 </ul>
               </div>
               <div class="pricing-footer">
-                <a href="api.blade.php" role="button" class="btn btn-info"><i class="md-extension"></i> Notre API!</a>
+                <a href="/api" role="button" class="btn btn-info"><i class="md-extension"></i> Notre API!</a>
               </div>
             </div>
           </li>
