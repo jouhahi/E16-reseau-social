@@ -23,7 +23,7 @@
         <div class="container-fluid">
           <div class="panel panel-default">
 
-            <h1 class="page-section-heading">API</h1>
+            <h1 class="page-section-heading">QuiVa? voir l'API</h1>
 
             <!-- Tabbable Widget -->
             <div class="tabbable tabs-primary">
@@ -266,7 +266,7 @@
                         </thead>
 
                         <tbody>
-                            <td>POST</td>
+                            <td>GET</td>
                             <td>/utilisateurs/:courriel</td>
                         </tbody>
                     </table>
@@ -288,7 +288,7 @@
                                 <td>URL</td>
                                 <td>courriel</td>
                                 <td>string</td>
-                                <td><b>Obligatoire.</b> Adresse courriel identifiant unique l’utilisateur demandé.</td>
+                                <td><b>Obligatoire.</b> Adresse courriel identifiant uniquement l’utilisateur demandé.</td>
                             </tr>
 
                             <tr>
@@ -319,7 +319,7 @@
                             <tr>
                                 <td>200</td>
                                 <td>
-                                    <pre>{<br/>  "courriel": "doc@courriel.dom",<br/>  "url-photo-profil": "https://url.com/photo.png",<br/>  "nom": "Dubé",<br/>  "prenom": "Joey",<br/>  "adresse": "420 rue Blazeit",<br/>  "ville": "Montréal",<br/>  "province": "Québec",<br/>  "codepostal": "1A1 A1A"<br/>}</pre>
+                                    <pre>{<br/>  "courriel": "doc@courriel.com",<br/>  "url-photo-profil": "https://url.com/photo.png",<br/>  "nom": "Dubé",<br/>  "prenom": "Joey",<br/>  "adresse": "420 rue Blazeit",<br/>  "ville": "Montréal",<br/>  "province": "Québec",<br/>  "codepostal": "1A1 A1A"<br/>}</pre>
                                 </td>
                             </tr>
 
@@ -373,7 +373,7 @@
                         </thead>
 
                         <tbody>
-                            <td>POST</td>
+                            <td>GET</td>
                             <td>/utilisateurs/:courriel/amis</td>
                         </tbody>
                     </table>
@@ -426,7 +426,7 @@
                             <tr>
                                 <td>200</td>
                                 <td>
-                                    <pre>[<br/>  {<br/>    "courriel": "doc@courriel.dom",<br/>    "url-photo-profil": "https://url.com/photo.png",<br/>    "nom": "Dubé",<br/>    "prenom": "Joey"<br/>},<br/>   {<br/>    "courriel": "snoop@courriel.dom",<br/>    "url-photo-profil": "https://url.com/photo2.png",<br/>    "nom": "Di Oh Doubel Gi",<br/>    "prenom": "Dawg"<br/>  }<br/>]</pre>
+                                    <pre>[<br/>  {<br/>    "courriel": "doc@courriel.com",<br/>    "url-photo-profil": "https://url.com/photo.png",<br/>    "nom": "Dubé",<br/>    "prenom": "Joey"<br/>  },<br/>  {<br/>    "courriel": "snoop@courriel.com",<br/>    "url-photo-profil": "https://url.com/photo2.png",<br/>    "nom": "Di Oh Doubel Gi",<br/>    "prenom": "Dawg"<br/>  }<br/>]</pre>
                                 </td>
                             </tr>
 
@@ -601,7 +601,9 @@
 
                       <h2>Obtenir les spectacles d’un utilisateur</h2>
 
-                      <p>Permet d'obtenir les spectacles futurs auxquels l'utilisateur est inscrit. Note: il faut que l'utilisateur soit authentifié. Note: si l'utilisateur demandé n'est pas l'utilisateur authentifié, le GUID et le montant du billet ne sont pas retournés. L’API ne permet que d’afficher les billets des amis de l’utilisateur authentifié, ainsi que ses propres billets.</p>
+                      <p>Permet d'obtenir les spectacles futurs auxquels l'utilisateur est inscrit.</p>
+                        <p>Note: il faut que l'utilisateur soit authentifié.</p>
+                        <p>Note: si l'utilisateur demandé n'est pas l'utilisateur authentifié, le GUID et le montant du billet ne sont pas retournés. L’API ne permet que d’afficher les billets des amis de l’utilisateur authentifié, ainsi que ses propres billets.</p>
                       <br/>
 
                       <h4>Requête</h4>
@@ -615,7 +617,7 @@
                           </thead>
 
                           <tbody>
-                              <td>POST</td>
+                              <td>GET</td>
                               <td>/utilisateurs/:courriel/billets</td>
                           </tbody>
                       </table>
@@ -666,6 +668,7 @@
 
                           <tbody>
                               <tr>
+                                  <td>200</td>
                                   <td>
                                       <pre>[<br/>  {<br/>    "guid": "3F2504E0-4F89-11D3-9A0C-0305E82C3301",<br/>    "titre": "Marie et Juana, une histoire enflammée",<br/>    "artiste": "Ronald McDonald",<br/>    "lieu": "Centre Bell, Montréal",<br/>    "date": "1464807600",<br/>    "montant": "4.20"<br/>  },<br/>  {<br/>    "guid": "3F2504E0-4F89-11D3-9A0C-0305E82C3301",<br/>    "titre": "Marie et Juana, une histoire enflammée",<br/>    "artiste": "Ronald McDonald",<br/>    "lieu": "Centre Bell, Montréal",<br/>    "date": "1464807600",<br/>    "montant": "4.20"<br/>  }<br/>]</pre>
                                   </td>
