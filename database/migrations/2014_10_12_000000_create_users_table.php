@@ -20,8 +20,8 @@ class CreateUsersTable extends Migration
             $table->string('ville');
             $table->string('province');
             $table->string('code_postal');
-            $table->string('courriel')->unique();
-            $table->string('mot_de_passe');
+            $table->string('email')->unique();
+            $table->string('password');
             $table->rememberToken();
             $table->timestamps();
         });

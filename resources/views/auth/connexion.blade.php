@@ -31,7 +31,7 @@
             <div class="panel-body">
 
               <div class="{{ $errors->has('email') ? ' has-error' : '' }}">
-                  <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="Courriel">
+                  <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="Email">
 
                   @if ($errors->has('email'))
                     <span class="help-block">

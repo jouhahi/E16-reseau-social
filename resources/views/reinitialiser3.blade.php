@@ -24,7 +24,7 @@
       <div class="panel panel-default">
         <div class="panel-body">
           <h1>Réinitialiser le mot de passe</h1>
-          <form action="connexion.blade.php">
+          <form action="auth/connexion.blade.php">
             <h3>Réinitialisation du mot de passe pour: test@etsmtl.ca</h3>
             <div class="form-group form-control-default">
               <label for="motDePasse">Nouveau mot de passe</label>
