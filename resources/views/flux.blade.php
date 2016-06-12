@@ -102,7 +102,7 @@
               <ul class="dropdown-menu" role="menu">
                 <li><a href="profil.blade.php">Profil</a></li>
                 <li><a href="notifications.blade.php">Notifications</a></li>
-                <li><a href="deconnexion.blade.php">Déconnexion</a></li>
+                <li><a href="{{ url('/deconnexion') }}">Déconnexion</a></li>
               </ul>
             </li>
           </ul>

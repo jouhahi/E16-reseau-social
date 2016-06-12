@@ -35,3 +35,7 @@ Route::post('password/reset', ['as' => 'auth.password.reset', 'uses' => 'Auth\Pa
 
 // Route pour l'affichage du flux
 Route::get('/flux', 'FluxController@index');
+
+Route::get('/test', function () {
+    return view('auth.inscription');
+});
