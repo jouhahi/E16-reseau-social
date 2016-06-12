@@ -38,7 +38,7 @@
                 </ul>
               </div>
               <div class="pricing-footer">
-                <a href="connexion.blade.php" role="button" class="btn btn-info"><i class="fa fa-unlock-alt"></i> Connexion</a>
+                <a href="{{ url('/connexion') }}" role="button" class="btn btn-info"><i class="fa fa-unlock-alt"></i> Connexion</a>
               </div>
             </div>
           </li>
@@ -60,7 +60,7 @@
                 </ul>
               </div>
               <div class="pricing-footer">
-                <a href="inscription.blade.php" role="button" class="btn btn-success"><i class="icon-user-1"></i> Inscription</a>
+                <a href="{{ url('/inscription') }}" role="button" class="btn btn-success"><i class="icon-user-1"></i> Inscription</a>
               </div>
             </div>
           </li>
@@ -79,7 +79,7 @@
                 </ul>
               </div>
               <div class="pricing-footer">
-                <a href="/api" role="button" class="btn btn-info"><i class="md-extension"></i> Notre API!</a>
+                <a href="{{ url('/api') }}" role="button" class="btn btn-info"><i class="md-extension"></i> Notre API!</a>
               </div>
             </div>
           </li>
