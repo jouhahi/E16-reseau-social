@@ -15,4 +15,23 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::get('api','ApiController@home');
+// Routes pour l'API
+Route::get('api','ApiController@index');
+
+// Routes pour l'authentification
+Route::get('connexion', ['as' => 'auth.login', 'uses' => 'Auth\AuthController@showLoginForm']);
+Route::post('connexion', ['as' => 'auth.login', 'uses' => 'Auth\AuthController@login']);
+Route::get('deconnexion', ['as' => 'auth.logout', 'uses' => 'Auth\AuthController@logout']);
+
+// Routes pour l'enregistrement
+Route::get('inscription', ['as' => 'auth.register', 'uses' => 'Auth\AuthController@showRegistrationForm']);
+Route::post('inscription', ['as' => 'auth.register', 'uses' => 'Auth\AuthController@register']);
+
+// Routes pour la réinitialisation de mots de passe
+Route::get('password/reset/{token?}', ['as' => 'auth.password.reset', 'uses' => 'Auth\PasswordController@showResetForm']);
+Route::post('password/email', ['as' => 'auth.password.email', 'uses' => 'Auth\PasswordController@sendResetLinkEmail']);
+Route::post('password/reset', ['as' => 'auth.password.reset', 'uses' => 'Auth\PasswordController@reset']);
+
+
+// Route pour l'affichage du flux
+Route::get('/flux', 'FluxController@index');
