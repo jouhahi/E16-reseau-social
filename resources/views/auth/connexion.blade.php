@@ -29,8 +29,8 @@
             <input class="form-control" type="text" placeholder="Courriel">
             <input class="form-control" type="password" placeholder="Mot de passe">
 
-            <a href="flux.blade.php" class="btn btn-primary">Connexion <i class="fa fa-fw fa-unlock-alt"></i></a>
-            <a href="reinitialiser.blade.php" class="forgot-password">Mot de passe oublié?</a>
+            <a href="../flux.blade.php" class="btn btn-primary">Connexion <i class="fa fa-fw fa-unlock-alt"></i></a>
+            <a href="../reinitialiser.blade.php" class="forgot-password">Mot de passe oublié?</a>
           </div>
         </div>
       </div>
