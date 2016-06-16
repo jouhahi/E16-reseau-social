@@ -102,13 +102,6 @@
 
                             <tr>
                                 <td>x-www-form-urlencoded</td>
-                                <td>redirect_uri</td>
-                                <td>string</td>
-                                <td><b>Obligatoire.</b> Lien de redirection utilisé lors de la connexion par fédération.</td>
-                            </tr>
-
-                            <tr>
-                                <td>x-www-form-urlencoded</td>
                                 <td>client_id</td>
                                 <td>string</td>
                                 <td><b>Obligatoire.</b> Identifiant du client utilisant l’API. Le client est l’application faisant la demande d’authentification et doit être préalablement enregistrée auprès du réseau social.</td>
