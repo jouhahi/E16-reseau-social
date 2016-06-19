@@ -245,7 +245,7 @@
                 <div id="profil" class="tab-pane">
                     <h2>Obtenir les informations d’un utilisateur</h2>
 
-                    <p>Permet d'obtenir toutes les informations du profil de l'utilisateur en utilisant son adresse courriel.</p>
+                    <p>Permet d'obtenir toutes les informations du profil de l'utilisateur en se basant sur son code d'autorisation d'API.</p>
                     <br/>
 
                     <h4>Requête</h4>
@@ -260,7 +260,7 @@
 
                         <tbody>
                             <td>GET</td>
-                            <td>/utilisateurs/:courriel</td>
+                            <td>/utilisateur/</td>
                         </tbody>
                     </table>
 
@@ -277,18 +277,12 @@
                         </thead>
 
                         <tbody>
-                            <tr>
-                                <td>URL</td>
-                                <td>courriel</td>
-                                <td>string</td>
-                                <td><b>Obligatoire.</b> Adresse courriel identifiant uniquement l’utilisateur demandé.</td>
-                            </tr>
 
                             <tr>
                                 <td>x-www-form-urlencoded</td>
                                 <td>Authorization</td>
                                 <td>string</td>
-                                <td><b>Obligatoire.</b> Jeton permettant de s'authentifier.<br/>
+                                <td><b>Obligatoire.</b> Jeton permettant à l'utilisateur de s'authentifier.<br/>
                                     <br/>
                                     Exemple de champ rempli :<br/>
                                     Authorization: Bearer 2YotnFZFEjr1zCsicMWpAA
@@ -312,7 +306,7 @@
                             <tr>
                                 <td>200</td>
                                 <td>
-                                    <pre>{<br/>  "courriel": "doc@courriel.com",<br/>  "url-photo-profil": "https://url.com/photo.png",<br/>  "nom": "Dubé",<br/>  "prenom": "Joey",<br/>  "adresse": "420 rue Blazeit",<br/>  "ville": "Montréal",<br/>  "province": "Québec",<br/>  "codepostal": "1A1 A1A"<br/>}</pre>
+                                    <pre>{<br/>  "id": 123,<br/>  "courriel": "doc@courriel.com",<br/>  "url-photo-profil": "https://url.com/photo.png",<br/>  "nom": "Dubé",<br/>  "prenom": "Joey",<br/>  "adresse": "420 rue Blazeit",<br/>  "ville": "Montréal",<br/>  "province": "Québec",<br/>  "codepostal": "1A1 A1A"<br/>}</pre>
                                 </td>
                             </tr>
 
@@ -327,20 +321,6 @@
                                 <td>401</td>
                                 <td>
                                     <pre>{<br/>  "error": "invalid_token",<br/>  "error_description": "Le jeton est invalide"<br/>}</pre>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>403</td>
-                                <td>
-                                    <pre>{<br/>  "error": "access_denied",<br/>  "error_description": "L’accès à cette ressource est interdit"<br/>}</pre>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>404</td>
-                                <td>
-                                    <pre>{<br/>  "error": "resource_not_found",<br/>  "error_description": "Ressource non trouvée ou supprimée"<br/>}</pre>
                                 </td>
                             </tr>
                         </tbody>
@@ -367,7 +347,7 @@
 
                         <tbody>
                             <td>GET</td>
-                            <td>/utilisateurs/:courriel/amis</td>
+                            <td>/utilisateur/amis</td>
                         </tbody>
                     </table>
 
@@ -384,12 +364,6 @@
                         </thead>
 
                         <tbody>
-                            <tr>
-                                <td>URL</td>
-                                <td>courriel</td>
-                                <td>string</td>
-                                <td><b>Obligatoire.</b> Adresse courriel de l’utilisateur.</td>
-                            </tr>
 
                             <tr>
                                 <td>x-www-form-urlencoded</td>
@@ -419,14 +393,14 @@
                             <tr>
                                 <td>200</td>
                                 <td>
-                                    <pre>[<br/>  {<br/>    "courriel": "doc@courriel.com",<br/>    "url-photo-profil": "https://url.com/photo.png",<br/>    "nom": "Dubé",<br/>    "prenom": "Joey"<br/>  },<br/>  {<br/>    "courriel": "snoop@courriel.com",<br/>    "url-photo-profil": "https://url.com/photo2.png",<br/>    "nom": "Di Oh Doubel Gi",<br/>    "prenom": "Dawg"<br/>  }<br/>]</pre>
+                                    <pre>[<br/>  {<br/>    "id": 123,<br/>    "courriel": "doc@courriel.com",<br/>    "url-photo-profil": "https://url.com/photo.png",<br/>    "nom": "Dubé",<br/>    "prenom": "Joey"<br/>  },<br/>  {<br/>    "id": 124,<br/>    "courriel": "snoop@courriel.com",<br/>    "url-photo-profil": "https://url.com/photo2.png",<br/>    "nom": "Di Oh Doubel Gi",<br/>    "prenom": "Dawg"<br/>  }<br/>]</pre>
                                 </td>
                             </tr>
 
                             <tr>
                                 <td>204</td>
                                 <td>
-                                    No Content
+                                    <pre>[]</pre>
                                 </td>
                             </tr>
 
@@ -444,19 +418,6 @@
                                 </td>
                             </tr>
 
-                            <tr>
-                                <td>403</td>
-                                <td>
-                                    <pre>{<br/>  "error": "access_denied",<br/>  "error_description": "L’accès à cette ressource est interdit"<br/>}</pre>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>404</td>
-                                <td>
-                                    <pre>{<br/>  "error": "resource_not_found",<br/>  "error_description": "Ressource non trouvée ou supprimée"<br/>}</pre>
-                                </td>
-                            </tr>
                         </tbody>
                     </table>
 
@@ -465,7 +426,7 @@
                 <div id="billet" class="tab-pane">
                       <h2>Ajouter un nouveau billet</h2>
 
-                      <p>Permet d'ajouter un nouveau billet à un utilisateur en utilisant son adresse courriel. Le client faisant la requête doit être autorisé à ajouter des billets.</p>
+                      <p>Permet d'ajouter un nouveau billet à un utilisateur en utilisant son id comme identifiant. Le client faisant la requête doit être autorisé à ajouter des billets. Note: La liste de billets doit être envoyée dans un Array même s'il y a un seul billet.</p>
                       <br/>
 
                       <h4>Requête</h4>
@@ -480,7 +441,7 @@
 
                           <tbody>
                               <td>POST</td>
-                              <td>/utilisateurs/:courriel/billets</td>
+                              <td>/billets</td>
                           </tbody>
                       </table>
 
@@ -498,10 +459,10 @@
 
                           <tbody>
                               <tr>
-                                  <td>URL</td>
-                                  <td>courriel</td>
+                                  <td>x-www-form-urlencoded</td>
+                                  <td>id</td>
                                   <td>string</td>
-                                  <td><b>Obligatoire.</b> Adresse courriel de l’utilisateur achetant les billets.</td>
+                                  <td><b>Obligatoire.</b> ID de l’utilisateur achetant les billets.</td>
                               </tr>
 
                               <tr>
@@ -521,7 +482,7 @@
                         <table class="table table-hover table-bordered">
                             <tr>
                                 <td>
-                                    <pre>[<br/>  {<br/>    "guid": "3F2504E0-4F89-11D3-9A0C-0305E82C3301",<br/>    "titre": "Marie et Juana, une histoire enflammée",<br/>    "artiste": "Ronald McDonald",<br/>    "lieu": "Centre Bell, Montréal",<br/>    "date": "1464807600",<br/>    "montant": "4.20"<br/>  },<br/>  {<br/>    "guid": "3F2504E0-4F89-11D3-9A0C-0305E82C3301",<br/>    "titre": "Marie et Juana, une histoire enflammée",<br/>    "artiste": "Ronald McDonald",<br/>    "lieu": "Centre Bell, Montréal",<br/>    "date": "1464807600",<br/>    "montant": "4.20"<br/>  }<br/>]</pre>
+                                    <pre>[<br/>  {<br/>    "uuid": "3F2504E0-4F89-11D3-9A0C-0305E82C3301",<br/>    "titre": "Marie et Juana, une histoire enflammée",<br/>    "artiste": "Ronald McDonald",<br/>    "lieu": "Centre Bell, Montréal",<br/>    "date": "1464807600",<br/>    "montant": "4.20"<br/>  },<br/>  {<br/>    "uuid": "3F2504E0-4F89-11D3-9A0C-0305E82C3301",<br/>    "titre": "Marie et Juana, une histoire enflammée",<br/>    "artiste": "Ronald McDonald",<br/>    "lieu": "Centre Bell, Montréal",<br/>    "date": "1464807600",<br/>    "montant": "4.20"<br/>  }<br/>]</pre>
                                 </td>
                             </tr>
                         </table>
@@ -565,20 +526,6 @@
                               </tr>
 
                               <tr>
-                                  <td>403</td>
-                                  <td>
-                                      <pre>{<br/>  "error": "access_denied",<br/>  "error_description": "L’accès à cette ressource est interdit"<br/>}</pre>
-                                  </td>
-                              </tr>
-
-                              <tr>
-                                  <td>404</td>
-                                  <td>
-                                      <pre>{<br/>  "error": "resource_not_found",<br/>  "error_description": "Ressource non trouvée ou supprimée"<br/>}</pre>
-                                  </td>
-                              </tr>
-
-                              <tr>
                                   <td>405</td>
                                   <td>
                                       <pre>{<br/>  "error": "method_not_allowed",<br/>  "error_description": "La méthode utilisée n’est pas autorisée"<br/>}</pre>
@@ -592,11 +539,11 @@
 
                       <br/>
 
-                      <h2>Obtenir les spectacles d’un utilisateur</h2>
+                      <h2>Obtenir les spectacles de l'utilisateur</h2>
 
-                      <p>Permet d'obtenir les spectacles futurs auxquels l'utilisateur est inscrit.</p>
+                      <p>Permet d'obtenir les spectacles futurs auxquels l'utilisateur est inscrit. Les événements sont triés en fonction du spectacle le plus imminent en premier.</p>
                         <p>Note: il faut que l'utilisateur soit authentifié.</p>
-                        <p>Note: si l'utilisateur demandé n'est pas l'utilisateur authentifié, le GUID et le montant du billet ne sont pas retournés. L’API ne permet que d’afficher les billets des amis de l’utilisateur authentifié, ainsi que ses propres billets.</p>
+                        <p>Comme l'utilisateur peut posséder une liste importante de billets, des méthodes de tri sont implémentées. Il est possible de choisir combien de billets doivent être affichés avec le paramètre <b>limit</b> et est possible de choisir la plage à l'aide de l'argument <b>page</b>.</p>
                       <br/>
 
                       <h4>Requête</h4>
@@ -611,7 +558,7 @@
 
                           <tbody>
                               <td>GET</td>
-                              <td>/utilisateurs/:courriel/billets</td>
+                              <td>/utilisateur/billets</td>
                           </tbody>
                       </table>
 
@@ -629,10 +576,17 @@
 
                           <tbody>
                               <tr>
-                                  <td>URL</td>
-                                  <td>courriel</td>
-                                  <td>string</td>
-                                  <td><b>Obligatoire.</b> Adresse courriel de l’utilisateur.</td>
+                                  <td>Query string</td>
+                                  <td>limit</td>
+                                  <td>integer</td>
+                                  <td><b>Optionnel.</b> Permet de choisir le nombre de résultats à retourner. Par défaut, les 10 premiers résultats sont retournés. Le maximum est 100.</td>
+                              </tr>
+
+                              <tr>
+                                  <td>Query string</td>
+                                  <td>page</td>
+                                  <td>integer</td>
+                                  <td><b>Optionnel.</b> Permet d'afficher la page contenant le nombre de résultats sélectionnés avec le paramètre limit. Par défaut, la première page de résultats est retournée.</td>
                               </tr>
 
                               <tr>
@@ -663,14 +617,14 @@
                               <tr>
                                   <td>200</td>
                                   <td>
-                                      <pre>[<br/>  {<br/>    "guid": "3F2504E0-4F89-11D3-9A0C-0305E82C3301",<br/>    "titre": "Marie et Juana, une histoire enflammée",<br/>    "artiste": "Ronald McDonald",<br/>    "lieu": "Centre Bell, Montréal",<br/>    "date": "1464807600",<br/>    "montant": "4.20"<br/>  },<br/>  {<br/>    "guid": "3F2504E0-4F89-11D3-9A0C-0305E82C3301",<br/>    "titre": "Marie et Juana, une histoire enflammée",<br/>    "artiste": "Ronald McDonald",<br/>    "lieu": "Centre Bell, Montréal",<br/>    "date": "1464807600",<br/>    "montant": "4.20"<br/>  }<br/>]</pre>
+                                      <pre>[<br/>  {<br/>    "uuid": "3F2504E0-4F89-11D3-9A0C-0305E82C3301",<br/>    "titre": "Marie et Juana, une histoire enflammée",<br/>    "artiste": "Ronald McDonald",<br/>    "lieu": "Centre Bell, Montréal",<br/>    "date": "1464807600",<br/>    "montant": "4.20"<br/>  },<br/>  {<br/>    "uuid": "3F2504E0-4F89-11D3-9A0C-0305E82C3301",<br/>    "titre": "Marie et Juana, une histoire enflammée",<br/>    "artiste": "Ronald McDonald",<br/>    "lieu": "Centre Bell, Montréal",<br/>    "date": "1464807600",<br/>    "montant": "4.20"<br/>  }<br/>]</pre>
                                   </td>
                               </tr>
 
                               <tr>
                                   <td>204</td>
                                   <td>
-                                      No Content
+                                      <pre>[]</pre>
                                   </td>
                               </tr>
 
@@ -688,21 +642,118 @@
                                   </td>
                               </tr>
 
-                              <tr>
-                                  <td>403</td>
-                                  <td>
-                                      <pre>{<br/>  "error": "access_denied",<br/>  "error_description": "L’accès à cette ressource est interdit"<br/>}</pre>
-                                  </td>
-                              </tr>
-
-                              <tr>
-                                  <td>404</td>
-                                  <td>
-                                      <pre>{<br/>  "error": "resource_not_found",<br/>  "error_description": "Ressource non trouvée ou supprimée"<br/>}</pre>
-                                  </td>
-                              </tr>
                           </tbody>
                       </table>
+
+                    <hr>
+
+                    <br/>
+
+                    <h2>Obtenir les spectacles des amis de l'utilisateur</h2>
+
+                    <p>Permet d'obtenir les spectacles futurs auxquels les amis de l'utilisateur sont inscrits. Les événements sont triés en fonction du spectacle le plus imminent en premier.</p>
+                    <p>Note: il faut que l'utilisateur soit authentifié.</p>
+                    <p>Comme les amis de l'utilisateur peuv posséder une liste importante de billets, des méthodes de tri sont implémentées. Il est possible de choisir combien de billets doivent être affichés avec le paramètre <b>limit</b> et est possible de choisir la plage à l'aide de l'argument <b>page</b>.</p>
+                    <br/>
+
+                    <h4>Requête</h4>
+
+                    <table class="table table-hover table-bordered">
+                        <thead>
+                        <tr>
+                            <th class="col-md-1">Méthode</th>
+                            <th>URL</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        <td>GET</td>
+                        <td>/utilisateur/amis/billets</td>
+                        </tbody>
+                    </table>
+
+                    <h4>Paramètres</h4>
+
+                    <table class="table table-hover table-bordered">
+                        <thead>
+                        <tr>
+                            <th class="col-md-1">Emplacement</th>
+                            <th class="col-md-1">Nom</th>
+                            <th class="col-md-1">Type</th>
+                            <td class="col-md-6">Description</td>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        <tr>
+                            <td>Query string</td>
+                            <td>limit</td>
+                            <td>integer</td>
+                            <td><b>Optionnel.</b> Permet de choisir le nombre de résultats à retourner. Par défaut, les 10 premiers résultats sont retournés. Le maximum est 100.</td>
+                        </tr>
+
+                        <tr>
+                            <td>Query string</td>
+                            <td>page</td>
+                            <td>integer</td>
+                            <td><b>Optionnel.</b> Permet d'afficher la page contenant le nombre de résultats sélectionnés avec le paramètre limit. Par défaut, la première page de résultats est retournée.</td>
+                        </tr>
+
+                        <tr>
+                            <td>x-www-form-urlencoded</td>
+                            <td>Authorization</td>
+                            <td>string</td>
+                            <td><b>Obligatoire.</b> Jeton permettant de s'authentifier.<br/>
+                                <br/>
+                                Exemple de champ rempli :<br/>
+                                Authorization: Bearer 2YotnFZFEjr1zCsicMWpAA
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                    <br/>
+                    <h4>Réponses</h4>
+
+                    <table class="table table-hover table-bordered">
+                        <thead>
+                        <tr>
+                            <th class="col-md-1">Statut</th>
+                            <th>Réponse</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        <tr>
+                            <td>200</td>
+                            <td>
+                                <pre>[<br/>  {<br/>    "idUtilisateur": 123,<br/>    "nom": "Bob",<br/>    "prenom": "McBob"<br/>    "titre": "Marie et Juana, une histoire enflammée",<br/>    "artiste": "Ronald McDonald",<br/>    "lieu": "Centre Bell, Montréal",<br/>    "date": "1464807600"<br/>  },<br/>  {<br/>    "idUtilisateur": 124,<br/>    "nom": "Bob",<br/>    "prenom": "McBob"<br/>    "titre": "Marie et Juana, une histoire enflammée",<br/>    "artiste": "Ronald McDonald",<br/>    "lieu": "Centre Bell, Montréal",<br/>    "date": "1464807600"<br/>  }<br/>]</pre>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>204</td>
+                            <td>
+                                <pre>[]</pre>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>400</td>
+                            <td>
+                                <pre>{<br/>  "error": "missing_token",<br/>  "error_description": "La requête n’a pas de jeton"<br/>}</pre>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>401</td>
+                            <td>
+                                <pre>{<br/>  "error": "invalid_token",<br/>  "error_description": "Le jeton est invalide"<br/>}</pre>
+                            </td>
+                        </tr>
+
+                        </tbody>
+                    </table>
 
                   </div>
 
