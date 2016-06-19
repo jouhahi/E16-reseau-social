@@ -16,7 +16,14 @@ Route::get('/', function () {
 });
 
 // Routes pour l'API
-Route::get('api','ApiController@index');
+
+Route::group(['prefix' => 'api'], function()
+{
+    Route::get('/','Api\ApiController@index');
+
+    Route::get('utilisateur', 'Api\ApiUserController@index');
+});
+
 
 // Routes pour l'authentification
 Route::get('connexion', ['as' => 'auth.login', 'uses' => 'Auth\AuthController@showLoginForm']);

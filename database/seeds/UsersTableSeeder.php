@@ -27,6 +27,7 @@ class UsersTableSeeder extends Seeder
             'province' => 'Québec',
             'code_postal'=>'A1A 1A1',
             'email'=>'test@test.com',
+            'url_photo_profil'=>'http://www.skeptical-science.com/wp-content/uploads/2016/03/images-5.jpeg',
             'password'=>bcrypt('123456')
         ]);
 
@@ -40,6 +41,7 @@ class UsersTableSeeder extends Seeder
                 'province' => $faker->country,
                 'code_postal'=>$faker->postcode,
                 'email'=>$faker->email,
+                'url_photo_profil'=>$faker->imageUrl(100,100),
                 'password'=>bcrypt($faker->password(6,10))
 
             ]);
