@@ -158,6 +158,13 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        /*
+         * Hootlex Laravel-friendship
+         * https://github.com/hootlex/laravel-friendships
+         */
+        Hootlex\Friendships\FriendshipsServiceProvider::class,
+
+
     ],
 
     /*
