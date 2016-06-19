@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\User;
+use App\Ticket;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,9 +14,11 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         User::truncate();
+        Ticket::truncate();
         Eloquent::unguard();
 
         $this->call('UsersTableSeeder');
+        $this->call('TicketsTableSeeder');
 
 
     }
