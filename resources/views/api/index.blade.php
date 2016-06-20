@@ -149,7 +149,7 @@
                     <br/>
                     <h2>Obtenir un jeton d'authentification <small>pour une application mobile</small></h2>
 
-                    <p>Pour obtenir un jeton permettant d’utiliser les fonctions de l’API demandant une authentification, il faut se connecter auprès du réseau social. Pour ce faire, il faut s’authentifier avec un nom d’utilisateur et un mot de passe. Le jeton retourné est valide indéfiniment ou jusqu’à la demande d’un nouveau jeton.</p>
+                    <p>Pour obtenir un jeton permettant d’utiliser les fonctions de l’API demandant une authentification, il faut se connecter auprès du réseau social. Pour ce faire, il faut s’authentifier avec un nom d’utilisateur et un mot de passe. Le jeton retourné est valide pendant 30 jours ou jusqu’à la demande d’un nouveau jeton.</p>
                     <p>L’authentification pour la fédération est basée sur la <a href="https://tools.ietf.org/html/rfc6749#section-4.3">section 4.3 du RFC6749</a>.</p>
 
                     <br/>
@@ -186,7 +186,7 @@
                                 <td>x-www-form-urlencoded</td>
                                 <td>grant_type</td>
                                 <td>string</td>
-                                <td><b>Obligatoire.</b> Inscrire « password ». Ce champ permet de définir le type d’accès demandé. L’authentification pour une application mobile se sert d’un identifiant et d’un mot de passe.</td>
+                                <td><b>Obligatoire.</b> Inscrire « <b>password</b> ». Ce champ permet de définir le type d’accès demandé. L’authentification pour une application mobile se sert d’un identifiant et d’un mot de passe.</td>
                             </tr>
 
                             <tr>
@@ -201,6 +201,20 @@
                                 <td>password</td>
                                 <td>string</td>
                                 <td><b>Obligatoire.</b> Le mot de passe de l’utilisateur.</td>
+                            </tr>
+
+                            <tr>
+                                <td>x-www-form-urlencoded</td>
+                                <td>client_id</td>
+                                <td>string</td>
+                                <td><b>Obligatoire.</b> L'identifiant de l'application mobile (Inscrire: <b>f3d259ddd3ed8ff3843839b</b>).</td>
+                            </tr>
+
+                            <tr>
+                                <td>x-www-form-urlencoded</td>
+                                <td>client_secret</td>
+                                <td>string</td>
+                                <td><b>Obligatoire.</b> Le mot de passe de l'application mobile (Inscrire: <b>4c7f6f8fa93d59c45502c0ae8c4a95b</b>).</td>
                             </tr>
                         </tbody>
                     </table>
@@ -220,21 +234,21 @@
                         <tr>
                             <td>200</td>
                             <td>
-                                <pre>{<br/>  "token_type": "Bearer",<br/>  "access_token": "2YotnFZFEjr1zCsicMWpAA"<br/>}</pre>
+                                <pre>{<br/>  "access_token": "acfliEOY0AI7nX64lVev8NDg4PiFeUyVbxvJdqfG",<br/>  "token_type": "Bearer",<br/>  "expires_in": "108000"</br>}</pre>
                             </td>
                         </tr>
 
                         <tr>
                             <td>400</td>
                             <td>
-                                <pre>{<br/>  "error": "invalid_request",<br/>  "error_description": "Des paramètres sont manquants ou invalides"<br/>}</pre>
+                                <pre>{<br/>  "error": "invalid_request",<br/>  "error_description": "The request is missing a required parameter, includes an </br>    invalid parameter value, includes a parameter more than once, or is otherwise</br>    malformed. Check the \"CHAMP MANQUANT\" parameter."<br/>}</pre>
                             </td>
                         </tr>
 
                         <tr>
                             <td>401</td>
                             <td>
-                                <pre>{<br/>  "error": "access_denied",<br/>  "error_description": "La combinaison de username et de password est invalide"<br/>}</pre>
+                                <pre>{<br/>  "error": "invalid_credentials",<br/>  "error_description": "The user credentials were incorrect."<br/>}</pre>
                             </td>
                         </tr>
                         </tbody>
