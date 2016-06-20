@@ -274,7 +274,7 @@
 
                         <tbody>
                             <td>GET</td>
-                            <td>/utilisateur/</td>
+                            <td>/utilisateur</td>
                         </tbody>
                     </table>
 
@@ -299,7 +299,7 @@
                                 <td><b>Obligatoire.</b> Jeton permettant à l'utilisateur de s'authentifier.<br/>
                                     <br/>
                                     Exemple de champ rempli :<br/>
-                                    Authorization: Bearer 2YotnFZFEjr1zCsicMWpAA
+                                    <i>Authorization: Bearer 2N0J5Ay4peCLzbfMYa07JHK4HLuhz32AgBPAXXrK</i>
                                 </td>
                             </tr>
                         </tbody>
@@ -327,14 +327,21 @@
                             <tr>
                                 <td>400</td>
                                 <td>
-                                    <pre>{<br/>  "error": "missing_token",<br/>  "error_description": "La requête n’a pas de jeton"<br/>}</pre>
+                                    <pre>{<br/>  "error": "invalid_request",<br/>  "error_description": "The request is missing a required parameter, includes an<br/>    invalid parameter value, includes a parameter more than once, or is otherwise<br/>    malformed. Check the \"access token\" parameter."<br/>}</pre>
                                 </td>
                             </tr>
 
                             <tr>
                                 <td>401</td>
                                 <td>
-                                    <pre>{<br/>  "error": "invalid_token",<br/>  "error_description": "Le jeton est invalide"<br/>}</pre>
+                                    <pre>{<br/>  "error": "access_denied",<br/>  "error_description": "The resource owner or authorization server denied the<br/>    request."<br/>}</pre>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>404</td>
+                                <td>
+                                    <pre>{<br/>  "error": "not_found",<br/>  "error_description": "The token owner is not an existing user."<br/>}</pre>
                                 </td>
                             </tr>
                         </tbody>
