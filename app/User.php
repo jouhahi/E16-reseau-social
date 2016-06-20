@@ -26,4 +26,14 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /*
+     * Fonction qui permet de retourner facilement la liste de
+     * billets appartenants à l'utilisateur
+     * Provient de https://laracasts.com/series/laravel-5-from-scratch/episodes/8
+     */
+    public function tickets()
+    {
+        return $this->hasMany('App\Ticket');
+    }
 }
