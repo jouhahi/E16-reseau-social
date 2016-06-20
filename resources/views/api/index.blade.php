@@ -393,7 +393,7 @@
                                 <td><b>Obligatoire.</b> Jeton permettant de s'authentifier.<br/>
                                     <br/>
                                     Exemple de champ rempli :<br/>
-                                    Authorization: Bearer 2YotnFZFEjr1zCsicMWpAA
+                                    Authorization: Bearer zGHXz8uFfETCEHaOrLtYzE428dFVDQrRtzfFkGZn
                                 </td>
                             </tr>
                         </tbody>
@@ -415,27 +415,30 @@
                                 <td>200</td>
                                 <td>
                                     <pre>[<br/>  {<br/>    "id": 123,<br/>    "courriel": "doc@courriel.com",<br/>    "url-photo-profil": "https://url.com/photo.png",<br/>    "nom": "Dubé",<br/>    "prenom": "Joey"<br/>  },<br/>  {<br/>    "id": 124,<br/>    "courriel": "snoop@courriel.com",<br/>    "url-photo-profil": "https://url.com/photo2.png",<br/>    "nom": "Di Oh Doubel Gi",<br/>    "prenom": "Dawg"<br/>  }<br/>]</pre>
+                                    Note: Même si l'utilisateur a un seul ami, la valeur va toujours être encapsulée dans un Array [].
                                 </td>
+
                             </tr>
 
                             <tr>
                                 <td>204</td>
                                 <td>
                                     <pre>[]</pre>
+                                    L'utilisateur n'a pas d'amis, alors un tableau vide est retournée avec le message 204 no-content.
                                 </td>
                             </tr>
 
                             <tr>
                                 <td>400</td>
                                 <td>
-                                    <pre>{<br/>  "error": "missing_token",<br/>  "error_description": "La requête n’a pas de jeton"<br/>}</pre>
+                                    <pre>{<br/>  "error": "invalid_request",<br/>  "error_description": "The request is missing a required parameter, includes an<br/>    invalid parameter value, includes a parameter more than once, or is otherwise<br/>    malformed. Check the \"access token\" parameter."<br/>}</pre>
                                 </td>
                             </tr>
 
                             <tr>
                                 <td>401</td>
                                 <td>
-                                    <pre>{<br/>  "error": "invalid_token",<br/>  "error_description": "Le jeton est invalide"<br/>}</pre>
+                                    <pre>{<br/>  "error": "access_denied",<br/>  "error_description": "The resource owner or authorization server denied the<br/>    request."<br/>}</pre>
                                 </td>
                             </tr>
 
