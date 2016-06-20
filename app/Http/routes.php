@@ -22,6 +22,11 @@ Route::group(['prefix' => 'api'], function()
     Route::get('/','Api\ApiController@index');
 
     Route::get('utilisateur', 'Api\ApiUserController@index');
+
+    // Route pour authentifier les utilisateurs de l'application mobile
+    Route::post('jetons/mobile', function() {
+        return Response::json(Authorizer::issueAccessToken());
+    });
 });
 
 
