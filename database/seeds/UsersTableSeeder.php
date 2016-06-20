@@ -31,17 +31,7 @@ class UsersTableSeeder extends Seeder
             'password'=>bcrypt('123456')
         ]);
 
-        User::create([
-            'prenom' => 'Giga',
-            'nom' => 'Pudding',
-            'adresse'=> '421 rue de la montagne',
-            'ville' => 'Montréal',
-            'province' => 'Québec',
-            'code_postal'=>'A1A 1A1',
-            'email'=>'test2@test.com',
-            'url_photo_profil'=>'http://www.skeptical-science.com/wp-content/uploads/2016/03/images-5.jpeg',
-            'password'=>bcrypt('123456')
-        ]);
+        
 
         foreach(range(1,9) as $index)
         {
@@ -59,6 +49,17 @@ class UsersTableSeeder extends Seeder
             ]);
         }
 
+        User::create([
+            'prenom' => 'Giga',
+            'nom' => 'Pudding',
+            'adresse'=> '421 rue de la montagne',
+            'ville' => 'Montréal',
+            'province' => 'Québec',
+            'code_postal'=>'A1A 1A1',
+            'email'=>'test2@test.com',
+            'url_photo_profil'=>'http://www.skeptical-science.com/wp-content/uploads/2016/03/images-5.jpeg',
+            'password'=>bcrypt('123456')
+        ]);
 
     }
 }

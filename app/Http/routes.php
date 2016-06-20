@@ -22,6 +22,9 @@ Route::group(['prefix' => 'api'], function()
 
     //Route pour afficher le profil de l'utilsateur authentifié
     Route::get('utilisateur', 'Api\ApiUserController@index');
+    
+    //Route pour afficher les amis de l'utilisateur authentifié
+    Route::get('utilisateur/amis', 'Api\ApiUserController@friends');
 
     // Route pour authentifier les utilisateurs de l'application mobile
     Route::post('jetons/mobile', function() {
