@@ -149,7 +149,7 @@
                     <br/>
                     <h2>Obtenir un jeton d'authentification <small>pour une application mobile</small></h2>
 
-                    <p>Pour obtenir un jeton permettant d’utiliser les fonctions de l’API demandant une authentification, il faut se connecter auprès du réseau social. Pour ce faire, il faut s’authentifier avec un nom d’utilisateur et un mot de passe. Le jeton retourné est valide pendant 30 jours ou jusqu’à la demande d’un nouveau jeton.</p>
+                    <p>Pour obtenir un jeton permettant d’utiliser les fonctions de l’API demandant une authentification, il faut se connecter auprès du réseau social. Pour ce faire, il faut s’authentifier avec un nom d’utilisateur et un mot de passe. Le jeton retourné est valide pendant 30 jours.</p>
                     <p>L’authentification pour la fédération est basée sur la <a href="https://tools.ietf.org/html/rfc6749#section-4.3">section 4.3 du RFC6749</a>.</p>
 
                     <br/>
