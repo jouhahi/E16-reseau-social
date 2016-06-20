@@ -12,6 +12,7 @@ class VerifyCsrfToken extends BaseVerifier
      * @var array
      */
     protected $except = [
-        //
+        //Ne pas vérifier de jeton Csrf lors des requêtes d'API
+        'api/*',
     ];
 }
