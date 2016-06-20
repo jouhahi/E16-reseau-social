@@ -16,11 +16,11 @@ Route::get('/', function () {
 });
 
 // Routes pour l'API
-
 Route::group(['prefix' => 'api'], function()
 {
     Route::get('/','Api\ApiController@index');
 
+    //Route pour afficher le profil de l'utilsateur authentifié
     Route::get('utilisateur', 'Api\ApiUserController@index');
 
     // Route pour authentifier les utilisateurs de l'application mobile
