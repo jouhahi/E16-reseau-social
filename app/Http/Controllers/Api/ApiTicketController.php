@@ -10,6 +10,7 @@ use App\User;
 use App\Ticket;
 use LucaDegasperi\OAuth2Server\Facades\Authorizer;
 use Carbon\Carbon;
+use DB;
 
 
 class ApiTicketController extends Controller
@@ -24,6 +25,9 @@ class ApiTicketController extends Controller
 
     }
 
+    /*
+     * Fonction pour afficher les billets de l'utilisateur
+     */
     public function userTickets()
     {
         $userId = Authorizer::getResourceOwnerId();
@@ -70,9 +74,73 @@ class ApiTicketController extends Controller
 
     }
 
+    /*
+     * Fonction pour afficher les billets des amis de l'utilisateur
+     */
     public function friendsTickets()
     {
+        $userId = Authorizer::getResourceOwnerId();
 
+        $user = User::find($userId);
+
+        if(!$user)
+        {
+            return Response::json([
+                'error'=> 'not_found',
+                'error_description'=>'The token owner is not an existing user.'
+            ], 404);
+        }
+        else
+        {
+            $amis = $user->getFriends();
+
+            //Vérifier si l'utilisateur a des amis
+            if (!$amis || $amis->isEmpty())
+            {
+                //Aucun ami
+                return Response::json([], 204);
+            }
+            else
+            {
+                //L'utilisateur a au moins un ami
+
+                //Aller chercher tous ses amis
+                $userList = $amis->all();
+
+                //Faire une liste de tous les billets de tous ses amis
+                $ticketList=collect();
+                foreach ($userList as $key => $value){
+
+                    $ticketList->push(DB::table('tickets')
+                        ->join('users', 'tickets.user_id', '=', 'users.id')
+                        ->select('users.id AS idUtilisateur' , 'users.nom', 'users.prenom', 'tickets.titre','tickets.artiste', 'tickets.lieu', 'tickets.date')
+                        ->where('user_id', '=', $value['id'])
+                        ->where('tickets.date','>',Carbon::now())
+                        ->get());
+                }
+
+                //Vérifier si les amis ont des billets
+                if (!$ticketList || $ticketList->isEmpty())
+                {
+                    //Aucun billet
+                    return Response::json([], 204);
+                }
+                else
+                {
+                    //Les amis ont des billets
+
+                    //Merger les liste en une seule liste
+                    $ticketList= $ticketList->collapse();
+
+                    //Mettre la liste de billet en ordre de plus imminent au plus tard
+                    $ticketList=$ticketList->sortBy('date')->values();
+
+                    //L'utilisateur a des billets
+                    return Response::json($ticketList ,200);
+                }
+            }
+
+        }
 
     }
 
@@ -100,4 +168,5 @@ class ApiTicketController extends Controller
             ];
         }, $tickets->all());
     }
+
 }
