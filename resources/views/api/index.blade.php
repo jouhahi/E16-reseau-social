@@ -574,8 +574,10 @@
 
                       <p>Permet d'obtenir les spectacles futurs auxquels l'utilisateur est inscrit. Les événements sont triés en fonction du spectacle le plus imminent en premier.</p>
                         <p>Note: il faut que l'utilisateur soit authentifié.</p>
-                        <p>Note: les dates sont au fuseau horaire UTC</p>
-                      <br/>
+                        <p>Note: les dates sont au fuseau horaire UTC.</p>
+                       <p>Note: même si la liste contient un seul billet, elle sera présenté sous la forme d'un tableau [].</p>
+
+                    <br/>
 
                       <h4>Requête</h4>
 
@@ -679,7 +681,8 @@
 
                     <p>Permet d'obtenir les spectacles futurs auxquels les amis de l'utilisateur sont inscrits. Les événements sont triés en fonction du spectacle le plus imminent en premier.</p>
                     <p>Note: il faut que l'utilisateur soit authentifié.</p>
-                    <p>Comme les amis de l'utilisateur peuv posséder une liste importante de billets, des méthodes de tri sont implémentées. Il est possible de choisir combien de billets doivent être affichés avec le paramètre <b>limit</b> et est possible de choisir la plage à l'aide de l'argument <b>page</b>.</p>
+                    <p>Note: les dates sont au fuseau horaire UTC.</p>
+                    <p>Note: même si la liste contient un seul billet, elle sera présenté sous la forme d'un tableau [].</p>
                     <br/>
 
                     <h4>Requête</h4>
@@ -711,19 +714,7 @@
                         </thead>
 
                         <tbody>
-                        <tr>
-                            <td>Query string</td>
-                            <td>limit</td>
-                            <td>integer</td>
-                            <td><b>Optionnel.</b> Permet de choisir le nombre de résultats à retourner. Par défaut, les 10 premiers résultats sont retournés. Le maximum est 100.</td>
-                        </tr>
 
-                        <tr>
-                            <td>Query string</td>
-                            <td>page</td>
-                            <td>integer</td>
-                            <td><b>Optionnel.</b> Permet d'afficher la page contenant le nombre de résultats sélectionnés avec le paramètre limit. Par défaut, la première page de résultats est retournée.</td>
-                        </tr>
 
                         <tr>
                             <td>x-www-form-urlencoded</td>
@@ -732,7 +723,7 @@
                             <td><b>Obligatoire.</b> Jeton permettant de s'authentifier.<br/>
                                 <br/>
                                 Exemple de champ rempli :<br/>
-                                Authorization: Bearer 2YotnFZFEjr1zCsicMWpAA
+                                Authorization: Bearer zGHXz8uFfETCEHaOrLtYzE428dFVDQrRtzfFkGZn
                             </td>
                         </tr>
                         </tbody>
@@ -753,7 +744,7 @@
                         <tr>
                             <td>200</td>
                             <td>
-                                <pre>[<br/>  {<br/>    "idUtilisateur": 123,<br/>    "nom": "Bob",<br/>    "prenom": "McBob"<br/>    "titre": "Marie et Juana, une histoire enflammée",<br/>    "artiste": "Ronald McDonald",<br/>    "lieu": "Centre Bell, Montréal",<br/>    "date": "1464807600"<br/>  },<br/>  {<br/>    "idUtilisateur": 124,<br/>    "nom": "Bob",<br/>    "prenom": "McBob"<br/>    "titre": "Marie et Juana, une histoire enflammée",<br/>    "artiste": "Ronald McDonald",<br/>    "lieu": "Centre Bell, Montréal",<br/>    "date": "1464807600"<br/>  }<br/>]</pre>
+                                <pre>[<br/>  {<br/>    "idUtilisateur": 123,<br/>    "nom": "Bob",<br/>    "prenom": "McBob"<br/>    "titre": "Marie et Juana, une histoire enflammée",<br/>    "artiste": "Ronald McDonald",<br/>    "lieu": "Centre Bell, Montréal",<br/>    "date": "2016-06-26 16:40:18"<br/>  },<br/>  {<br/>    "idUtilisateur": 124,<br/>    "nom": "John",<br/>    "prenom": "Doe"<br/>    "titre": "Marie et Juana, une histoire enflammée",<br/>    "artiste": "Ronald McDonald",<br/>    "lieu": "Centre Bell, Montréal",<br/>    "date": "2016-06-26 16:40:18"<br/>  }<br/>]</pre>
                             </td>
                         </tr>
 
@@ -761,20 +752,28 @@
                             <td>204</td>
                             <td>
                                 <pre>[]</pre>
+                                L'utilisateur n'a pas de billets, alors un tableau vide est retourné [].
                             </td>
                         </tr>
 
                         <tr>
                             <td>400</td>
                             <td>
-                                <pre>{<br/>  "error": "missing_token",<br/>  "error_description": "La requête n’a pas de jeton"<br/>}</pre>
+                                <pre>{<br/>  "error": "invalid_request",<br/>  "error_description": "The request is missing a required parameter, includes an<br/>    invalid parameter value, includes a parameter more than once, or is otherwise<br/>    malformed. Check the \"access token\" parameter."<br/>}</pre>
                             </td>
                         </tr>
 
                         <tr>
                             <td>401</td>
                             <td>
-                                <pre>{<br/>  "error": "invalid_token",<br/>  "error_description": "Le jeton est invalide"<br/>}</pre>
+                                <pre>{<br/>  "error": "access_denied",<br/>  "error_description": "The resource owner or authorization server denied the<br/>    request."<br/>}</pre>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>404</td>
+                            <td>
+                                <pre>{<br/>  "error": "not_found",<br/>  "error_description": "The token owner is not an existing user."<br/>}</pre>
                             </td>
                         </tr>
 
