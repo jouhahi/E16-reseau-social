@@ -30,7 +30,7 @@ class TicketsTableSeeder extends Seeder
                 'uuid'=>$faker->uuid,
                 'titre'=>$faker->word,
                 'lieu'=>$faker->address,
-                'date'=>$faker->dateTimeBetween('-2 weeks', '+2 weeks'),
+                'date'=>$faker->dateTimeBetween('-1 weeks', '+2 weeks'),
                 'artiste'=>$faker->name,
                 'montant'=>$faker->numberBetween(0,50),
                 'user_id'=> $faker->randomElement($userIds)

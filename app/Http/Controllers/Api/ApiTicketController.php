@@ -9,6 +9,7 @@ use App\Http\Requests;
 use App\User;
 use App\Ticket;
 use LucaDegasperi\OAuth2Server\Facades\Authorizer;
+use Carbon\Carbon;
 
 
 class ApiTicketController extends Controller
@@ -20,6 +21,7 @@ class ApiTicketController extends Controller
     {
         $this->middleware('oauth');
         $this->middleware('oauth-user');
+
     }
 
     public function userTickets()
@@ -38,9 +40,16 @@ class ApiTicketController extends Controller
         else
         {
             //Aller chercher tous les billets de l'utilisateur
-            $tickets = $user->tickets;
+            //et les trier du plus tôt au plus tard
+            $tickets = $user->tickets()->orderBy('date','asc')->get();
 
-            //TRIER LES BILLETS ET AFFICHER QUE CEUX QUI NE SONT PAS PASSÉS
+            //Garder seulement les billets qui ne sont pas passés
+            //Snippet provient de http://stackoverflow.com/questions/33806518/laravel-collection-date-comparison
+            //Par: patricus
+            $currentDate = Carbon::now('UTC');
+            $tickets = $tickets->filter(function ($item) use ($currentDate){
+               return (data_get($item, 'date')>$currentDate);
+            });
 
             //Vérifier si l'utilisateur a des billets
             if (!$tickets || $tickets->isEmpty())
