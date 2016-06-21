@@ -17,7 +17,7 @@ class CreateTicketsTable extends Migration
             $table->string('uuid')->unique();
             $table->string('titre');
             $table->string('lieu');
-            $table->timestamp('date');
+            $table->dateTime('date');
             $table->string('artiste');
             $table->string('montant');
             $table->integer('user_id')->unsigned();
