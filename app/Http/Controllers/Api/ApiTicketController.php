@@ -46,10 +46,10 @@ class ApiTicketController extends Controller
             //Garder seulement les billets qui ne sont pas passés
             //Snippet provient de http://stackoverflow.com/questions/33806518/laravel-collection-date-comparison
             //Par: patricus
-            $currentDate = Carbon::now('UTC');
+            $currentDate = Carbon::now();
             $tickets = $tickets->filter(function ($item) use ($currentDate){
-               return (data_get($item, 'date')>$currentDate);
-            });
+                return $item['date']>$currentDate;
+            })->values();
 
             //Vérifier si l'utilisateur a des billets
             if (!$tickets || $tickets->isEmpty())
