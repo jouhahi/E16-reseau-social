@@ -33,6 +33,11 @@ return [
             'callback' => '\App\Http\Controllers\Api\Auth\PasswordGrantVerifier@verify',
             //Valide pendant 1 mois
             'access_token_ttl' => 108000
+        ],
+        'authorization_code' => [
+            'class' => '\League\OAuth2\Server\Grant\AuthCodeGrant',
+            'access_token_ttl' => 108000,
+            'auth_token_ttl'   => 3600
         ]
     ],
 

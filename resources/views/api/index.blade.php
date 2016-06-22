@@ -51,9 +51,10 @@
 
                 <div id="authentification" class="tab-pane">
                     <h2>Obtenir un jeton d'authentification <small>pour la fédération</small></h2>
-
-                    <p>Lorsqu’une connexion est faite à l’aide de la fédération, le réseau social retourne un code d’accès. Ce code d’accès peut être échangé contre un jeton permettant d’utiliser l’API du réseau social. Le code peut être utilisé une seule fois et est valide pendant 10 minutes.</p>
-                    <p>Pour obtenir un jeton permettant d’utiliser les fonctions de l’API demandant une authentification, il faut échanger le code contre ce jeton. Ce double échange permet de sécuriser l’obtention du jeton et réduit les risques de sécurité. Le jeton est valide indéfiniment ou jusqu’à l’obtention d’un nouveau jeton.</p>
+                    <p>Pour se connecter à l'aide de la fédération, l'application de l'utilisateur doit appeler l'URL suivante: https://quiva.herokuapp.com/federation?redirect_uri=https%3A%2F%2Fticket-fire.herokuapp.com%2Ffederation&response_type=code&client_id=32k4h34jk2h34kj2h34kj2jk</p>
+                    <p>L'utilisateur doit ensuite se connecter à QuiVa? si ce n'est pas déjà fait, puis accepter la demande d'accès du client.</p>
+                    <p>Le client recevra un code valide pendant 60 minutes qu'il doit échanger contre un jeton en faisant une requête à la méthode POST /jetons/federation.</p>
+                    <p>Ce double échange permet de sécuriser l’obtention du jeton et réduit les risques de sécurité. Le jeton est valide pendant 30 jours.</p>
                     <p>L’authentification pour la fédération est basée sur la <a href="https://tools.ietf.org/html/rfc6749#section-4.1">section 4.1 du RFC6749</a>.</p>
                     <br/>
 
@@ -90,21 +91,35 @@
                                 <td>x-www-form-urlencoded</td>
                                 <td>grant_type</td>
                                 <td>string</td>
-                                <td><b>Obligatoire.</b> Inscrire « authorization_code ». Ce champ permet de définir le type d’accès demandé. L’authentification par fédération se sert d’un code d’autorisation.</td>
-                            </tr>
-
-                            <tr>
-                                <td>x-www-form-urlencoded</td>
-                                <td>code</td>
-                                <td>string</td>
-                                <td><b>Obligatoire.</b> Code obtenu lors de la redirection faite par la fédération après l’authentification.</td>
+                                <td><b>Obligatoire.</b> Inscrire « <b>authorization_code</b> ». Ce champ permet de définir le type d’accès demandé. L’authentification par fédération se sert d’un code.</td>
                             </tr>
 
                             <tr>
                                 <td>x-www-form-urlencoded</td>
                                 <td>client_id</td>
                                 <td>string</td>
-                                <td><b>Obligatoire.</b> Identifiant du client utilisant l’API. Le client est l’application faisant la demande d’authentification et doit être préalablement enregistrée auprès du réseau social.</td>
+                                <td><b>Obligatoire.</b> L'identifiant du site de vente de billets (Inscrire: <b>32k4h34jk2h34kj2h34kj2jk</b>).</td>
+                            </tr>
+
+                            <tr>
+                                <td>x-www-form-urlencoded</td>
+                                <td>client_secret</td>
+                                <td>string</td>
+                                <td><b>Obligatoire.</b> Le mot de passe du site de vente de billets (Inscrire: <b>45kjh36kvjhnk54vvhj3kj64j6h3jk4g2k</b>).</td>
+                            </tr>
+
+                            <tr>
+                                <td>x-www-form-urlencoded</td>
+                                <td>code</td>
+                                <td>string</td>
+                                <td><b>Obligatoire.</b> Le code reçu à la suite de l'authentification par la fédération</td>
+                            </tr>
+
+                            <tr>
+                                <td>x-www-form-urlencoded</td>
+                                <td>redirect_uri</td>
+                                <td>string</td>
+                                <td><b>Obligatoire.</b> L'URL de redirection utilisé (Inscrire: <b>https://ticket-fire.herokuapp.com/federation</b>).</td>
                             </tr>
                         </tbody>
                     </table>
@@ -124,21 +139,28 @@
                             <tr>
                                 <td>200</td>
                                 <td>
-                                    <pre>{<br/>  "token_type": "Bearer",<br/>  "access_token": "2YotnFZFEjr1zCsicMWpAA"<br/>}</pre>
+                                    <pre>{<br/>  "access_token": "80fNwwNktk0okeR4Ofmg9cZHjHxhuSQp3NaKJV4d",<br/>  "token_type": "Bearer",<br/>  "expires_in": 108000</br>}</pre>
                                 </td>
                             </tr>
 
                             <tr>
                                 <td>400</td>
                                 <td>
-                                    <pre>{<br/>  "error": "invalid_request",<br/>  "error_description": "Des paramètres sont manquants ou invalides"<br/>}</pre>
+                                    <pre>{<br/>  "error": "invalid_request",<br/>  "error_description": "The request is missing a required parameter, includes an </br>    invalid parameter value, includes a parameter more than once, or is otherwise</br>    malformed. Check the \"CHAMP MANQUANT\" parameter."<br/>}</pre>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>400</td>
+                                <td>
+                                    <pre>{<br/>  "error": "unsupported_grant_type",<br/>  "error_description": "The authorization grant type \"authorization_codes\" </br>    is not supported by the authorization server."<br/>}</pre>
                                 </td>
                             </tr>
 
                             <tr>
                                 <td>401</td>
                                 <td>
-                                    <pre>{<br/>  "error": "access_denied",<br/>  "error_description": "La combinaison de client_id, <br/>       de redirect_uri et de code est invalide"<br/>}</pre>
+                                    <pre>{<br/>  "error": "invalid_credentials",<br/>  "error_description": "The user credentials were incorrect."<br/>}</pre>
                                 </td>
                             </tr>
                         </tbody>
@@ -191,20 +213,6 @@
 
                             <tr>
                                 <td>x-www-form-urlencoded</td>
-                                <td>username</td>
-                                <td>string</td>
-                                <td><b>Obligatoire.</b> L’identifiant de l’utilisateur est son adresse courriel.</td>
-                            </tr>
-
-                            <tr>
-                                <td>x-www-form-urlencoded</td>
-                                <td>password</td>
-                                <td>string</td>
-                                <td><b>Obligatoire.</b> Le mot de passe de l’utilisateur.</td>
-                            </tr>
-
-                            <tr>
-                                <td>x-www-form-urlencoded</td>
                                 <td>client_id</td>
                                 <td>string</td>
                                 <td><b>Obligatoire.</b> L'identifiant de l'application mobile (Inscrire: <b>f3d259ddd3ed8ff3843839b</b>).</td>
@@ -215,6 +223,20 @@
                                 <td>client_secret</td>
                                 <td>string</td>
                                 <td><b>Obligatoire.</b> Le mot de passe de l'application mobile (Inscrire: <b>4c7f6f8fa93d59c45502c0ae8c4a95b</b>).</td>
+                            </tr>
+
+                            <tr>
+                                <td>x-www-form-urlencoded</td>
+                                <td>username</td>
+                                <td>string</td>
+                                <td><b>Obligatoire.</b> L’identifiant de l’utilisateur est son adresse courriel.</td>
+                            </tr>
+
+                            <tr>
+                                <td>x-www-form-urlencoded</td>
+                                <td>password</td>
+                                <td>string</td>
+                                <td><b>Obligatoire.</b> Le mot de passe de l’utilisateur.</td>
                             </tr>
                         </tbody>
                     </table>
@@ -234,7 +256,7 @@
                         <tr>
                             <td>200</td>
                             <td>
-                                <pre>{<br/>  "access_token": "acfliEOY0AI7nX64lVev8NDg4PiFeUyVbxvJdqfG",<br/>  "token_type": "Bearer",<br/>  "expires_in": "108000"</br>}</pre>
+                                <pre>{<br/>  "access_token": "acfliEOY0AI7nX64lVev8NDg4PiFeUyVbxvJdqfG",<br/>  "token_type": "Bearer",<br/>  "expires_in": 108000</br>}</pre>
                             </td>
                         </tr>
 
@@ -242,6 +264,13 @@
                             <td>400</td>
                             <td>
                                 <pre>{<br/>  "error": "invalid_request",<br/>  "error_description": "The request is missing a required parameter, includes an </br>    invalid parameter value, includes a parameter more than once, or is otherwise</br>    malformed. Check the \"CHAMP MANQUANT\" parameter."<br/>}</pre>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>400</td>
+                            <td>
+                                <pre>{<br/>  "error": "unsupported_grant_type",<br/>  "error_description": "The authorization grant type \"authorization_codes\" </br>    is not supported by the authorization server."<br/>}</pre>
                             </td>
                         </tr>
 

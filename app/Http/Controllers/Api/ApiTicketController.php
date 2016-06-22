@@ -163,7 +163,7 @@ class ApiTicketController extends Controller
 
         //Seul le site de ventes est autorisé à ajouter des billets
         $clientId=Authorizer::getClientId();
-        if (strcmp($clientId, "f3d259ddd3ed8ff3843839b") !==0)
+        if (strcmp($clientId, "32k4h34jk2h34kj2h34kj2jk") !==0)
         {
             //Le clientId ne correspond pas à celui du site de vente
             return Response::json([
