@@ -150,6 +150,19 @@ class ApiTicketController extends Controller
      */
     public function addNewTickets(Request $request)
     {
+        $userId=Authorizer::getResourceOwnerId();
+
+        //Seul le site de ventes est autorisé à ajouter des billets
+        $clientId=Authorizer::getClientId();
+        if (strcmp($clientId, "f3d259ddd3ed8ff3843839b") !==0)
+        {
+            //Le clientId ne correspond pas à celui du site de vente
+            return Response::json([
+                'error'=> 'method_not_allowed',
+                'error_description'=>'The client is not authorized to use this method.'
+            ], 405);
+        }
+
         //Vérifier qu'on a bien le header de json
         if (!$request->isJson())
         {
@@ -167,7 +180,7 @@ class ApiTicketController extends Controller
         {
             return Response::json([
                 'error'=> 'invalid_request',
-                'error_description'=>'The json is invalid.'
+                'error_description'=>'The Json format is invalid. Expecting an array of Json.'
             ], 400);
         }
 
@@ -175,26 +188,30 @@ class ApiTicketController extends Controller
         $validation = Validator::make(
             $content->all(),
             [
-                'uuid'=> 'required|unique:tickets',
-                'titre' => 'required|string',
-                'artiste' => 'required|string',
-                'lieu' => 'required|string',
-                'date'=> 'required|date|after:now',
-                'montant' => 'required|string'
+                '*.uuid'=> 'required|unique:tickets|distinct',
+                '*.titre' => 'required|string',
+                '*.artiste' => 'required|string',
+                '*.lieu' => 'required|string',
+                '*.date'=> 'required|date|after:now',
+                '*.montant' => 'required|string'
             ]
         );
+
         if ($validation->fails()) {
             return Response::json([
                 'error'=> 'invalid_request',
-                'error_description'=>'The json is invalid.'
+                'error_description'=>'The tickets are invalid. Read the documentation.'
             ], 400);
         }
 
         //Pour tous les billets, ajouter le billet à la base de données
+        foreach ($content as $key => $value) {
+            $value['user_id']=$userId;
+            Ticket::create($value);
+        }
 
-
-
-        return Response::json($content->count() ,200);
+        //Tout s'est bien déroulé
+        return Response::make('',201);
     }
 
     /*
