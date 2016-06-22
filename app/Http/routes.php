@@ -48,10 +48,10 @@ Route::group(['middleware' => 'https'], function () {
     });
 
     //Route pour l'affichage du formulaire de connexion de la fédération
-    Route::get('federation', ['as' => 'oauth.authorize.get', 'middleware' => ['check-authorization-params', 'auth','https'], 'uses' =>'FederationController@index']);
+    Route::get('federation', ['as' => 'oauth.authorize.get', 'middleware' => ['check-authorization-params', 'auth'], 'uses' =>'FederationController@index']);
 
     //Route pour la validation du formulaire d'autorisation de la fédération
-    Route::post('federation', ['as' => 'oauth.authorize.post', 'middleware' => ['csrf', 'check-authorization-params', 'auth','https'],'uses' =>'FederationController@submit']);
+    Route::post('federation', ['as' => 'oauth.authorize.post', 'middleware' => ['csrf', 'check-authorization-params', 'auth'],'uses' =>'FederationController@submit']);
 
     // Routes pour l'authentification
     Route::get('connexion', ['as' => 'auth.login', 'uses' => 'Auth\AuthController@showLoginForm']);
