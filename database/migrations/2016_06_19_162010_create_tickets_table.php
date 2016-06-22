@@ -24,7 +24,7 @@ class CreateTicketsTable extends Migration
 
             $table->timestamps();
 
-            $table->foreign('user_id')->references('id')->on('users');
+            //$table->foreign('user_id')->references('id')->on('users');
         });
     }
 
@@ -35,10 +35,11 @@ class CreateTicketsTable extends Migration
      */
     public function down()
     {
+        /*
         Schema::table('tickets', function (Blueprint $table) {
             $table->dropForeign('user_id');
         });
- 
+        */
         Schema::drop('tickets');
 
     }
