@@ -17,7 +17,7 @@ class Ticket extends \Eloquent
      * @var array
      */
     protected $fillable = [
-        'uuid', 'titre', 'lieu', 'date', 'artiste', 'monstant', 'user_id'
+        'uuid', 'titre', 'lieu', 'date', 'artiste', 'montant', 'user_id'
     ];
 
 }

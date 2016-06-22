@@ -11,6 +11,7 @@ use App\Ticket;
 use LucaDegasperi\OAuth2Server\Facades\Authorizer;
 use Carbon\Carbon;
 use DB;
+use Illuminate\Support\Facades\Validator;
 
 
 class ApiTicketController extends Controller
@@ -144,9 +145,56 @@ class ApiTicketController extends Controller
 
     }
 
-    public function addNewTickets()
+    /*
+     * Fonction pour ajouter des nouveaux tickets
+     */
+    public function addNewTickets(Request $request)
     {
+        //Vérifier qu'on a bien le header de json
+        if (!$request->isJson())
+        {
+            return Response::json([
+                'error'=> 'invalid_request',
+                'error_description'=>'The content-type must be application/json.'
+            ], 400);
+        }
 
+        //Sauvegarder le contenu de la requête
+        $content = $request->json();
+
+        //Vérifier si le contenu était valide
+        if (!$content || !$content->count())
+        {
+            return Response::json([
+                'error'=> 'invalid_request',
+                'error_description'=>'The json is invalid.'
+            ], 400);
+        }
+
+        //Pour tous les billets, vérifier que les champs sont valides
+        $validation = Validator::make(
+            $content->all(),
+            [
+                'uuid'=> 'required|unique:tickets',
+                'titre' => 'required|string',
+                'artiste' => 'required|string',
+                'lieu' => 'required|string',
+                'date'=> 'required|date|after:now',
+                'montant' => 'required|string'
+            ]
+        );
+        if ($validation->fails()) {
+            return Response::json([
+                'error'=> 'invalid_request',
+                'error_description'=>'The json is invalid.'
+            ], 400);
+        }
+
+        //Pour tous les billets, ajouter le billet à la base de données
+
+
+
+        return Response::json($content->count() ,200);
     }
 
     /*

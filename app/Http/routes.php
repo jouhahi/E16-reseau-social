@@ -28,6 +28,9 @@ Route::group(['prefix' => 'api'], function()
     
     //Route pour afficher les billets de l'utilisateur authentifié
     Route::get('utilisateur/billets', 'Api\ApiTicketController@userTickets');
+    
+    //Route pour créer des nouveaux billets
+    Route::post('utilisateur/billets', 'Api\ApiTicketController@addNewTickets');
 
     //Route pour afficher les billets des amis de l'utilisateur authentifié
     Route::get('utilisateur/amis/billets', 'Api\ApiTicketController@friendsTickets');
