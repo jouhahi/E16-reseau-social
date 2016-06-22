@@ -35,8 +35,11 @@ class CreateTicketsTable extends Migration
      */
     public function down()
     {
-        Schema::disableForeignKeyConstraints();
+        Schema::table('tickets', function (Blueprint $table) {
+            $table->dropForeign('user_id');
+        });
+ 
         Schema::drop('tickets');
-        Schema::enableForeignKeyConstraints();
+
     }
 }
