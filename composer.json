@@ -5,13 +5,13 @@
     "license": "MIT",
     "type": "project",
     "require": {
+        "fzaninotto/faker": "~1.4",
         "php": ">=5.5.9",
         "laravel/framework": "5.2.*",
         "hootlex/laravel-friendships": "^1.0",
         "lucadegasperi/oauth2-server-laravel": "5.1.*"
     },
     "require-dev": {
-        "fzaninotto/faker": "~1.4",
         "mockery/mockery": "0.9.*",
         "phpunit/phpunit": "~4.0",
         "symfony/css-selector": "2.8.*|3.0.*",
@@ -43,7 +43,8 @@
         ],
         "post-update-cmd": [
             "Illuminate\\Foundation\\ComposerScripts::postUpdate",
-            "php artisan optimize"
+            "php artisan optimize",
+            "php artisan migrate:refresh --seed"
         ]
     },
     "config": {
