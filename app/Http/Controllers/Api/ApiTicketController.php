@@ -152,6 +152,15 @@ class ApiTicketController extends Controller
     {
         $userId=Authorizer::getResourceOwnerId();
 
+        //Vérifier si l'utilisateur existe encore
+        if(!$userId)
+        {
+            return Response::json([
+                'error'=> 'not_found',
+                'error_description'=>'The token owner is not an existing user.'
+            ], 404);
+        }
+
         //Seul le site de ventes est autorisé à ajouter des billets
         $clientId=Authorizer::getClientId();
         if (strcmp($clientId, "f3d259ddd3ed8ff3843839b") !==0)

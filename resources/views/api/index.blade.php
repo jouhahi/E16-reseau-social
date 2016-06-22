@@ -457,7 +457,18 @@
                 <div id="billet" class="tab-pane">
                       <h2>Ajouter un nouveau billet</h2>
 
-                      <p>Permet d'ajouter un nouveau billet à un utilisateur en utilisant son id comme identifiant. Le client faisant la requête doit être autorisé à ajouter des billets. Note: La liste de billets doit être envoyée dans un Array même s'il y a un seul billet.</p>
+                      <p>Permet d'ajouter un nouveau billet à un utilisateur.</p>
+                    <p>Le client faisant la requête doit être autorisé à ajouter des billets, seul le site de vente de billets est autorisé.</p>
+                      <p>Note: La liste de billets doit être envoyée dans un tableau [] même s'il y a un seul billet.</p>
+                      <p>Le format des billets envoyés est très important, car les champs sont soumis à de nombreuses contraintes de validation.</p>
+                    <ul>
+                        <li>uiid: Obligatoire, string, unique dans la requête et dans la BD.</li>
+                        <li>titre: Obligatoire, string.</li>
+                        <li>artiste: Obligatoire, string.</li>
+                        <li>lieu: Obligatoire, string.</li>
+                        <li>date: Obligatoire, format datetime, doit être plus tard que "maintenant"</li>
+                        <li>montant: Obligatoire, string.</li>
+                    </ul>
                       <br/>
 
                       <h4>Requête</h4>
@@ -472,7 +483,7 @@
 
                           <tbody>
                               <td>POST</td>
-                              <td>/billets</td>
+                              <td>/utilisateur/billets</td>
                           </tbody>
                       </table>
 
@@ -491,9 +502,9 @@
                           <tbody>
                               <tr>
                                   <td>x-www-form-urlencoded</td>
-                                  <td>id</td>
+                                  <td>Content-Type</td>
                                   <td>string</td>
-                                  <td><b>Obligatoire.</b> ID de l’utilisateur achetant les billets.</td>
+                                  <td><b>Obligatoire.</b> Inscrire: "application/json".</td>
                               </tr>
 
                               <tr>
@@ -503,7 +514,7 @@
                                   <td><b>Obligatoire.</b> Jeton permettant de s'authentifier.<br/>
                                       <br/>
                                       Exemple de champ rempli :<br/>
-                                      Authorization: Bearer 2YotnFZFEjr1zCsicMWpAA
+                                      Authorization: Bearer xCbsDqokcoAXpDVYwEaz2bOJyPIu5K35yUzxWcOo
                                   </td>
                               </tr>
                           </tbody>
@@ -513,7 +524,7 @@
                         <table class="table table-hover table-bordered">
                             <tr>
                                 <td>
-                                    <pre>[<br/>  {<br/>    "uuid": "3F2504E0-4F89-11D3-9A0C-0305E82C3301",<br/>    "titre": "Marie et Juana, une histoire enflammée",<br/>    "artiste": "Ronald McDonald",<br/>    "lieu": "Centre Bell, Montréal",<br/>    "date": "1464807600",<br/>    "montant": "4.20"<br/>  },<br/>  {<br/>    "uuid": "3F2504E0-4F89-11D3-9A0C-0305E82C3301",<br/>    "titre": "Marie et Juana, une histoire enflammée",<br/>    "artiste": "Ronald McDonald",<br/>    "lieu": "Centre Bell, Montréal",<br/>    "date": "1464807600",<br/>    "montant": "4.20"<br/>  }<br/>]</pre>
+                                    <pre>[<br/>  {<br/>    "uuid": "3F2504E0-4F89-11D3-9A0C-0305E82C3301",<br/>    "titre": "Marie et Juana, une histoire enflammée",<br/>    "artiste": "Ronald McDonald",<br/>    "lieu": "Centre Bell, Montréal",<br/>    "date": "2016-06-26 16:40:18",<br/>    "montant": "4.20"<br/>  },<br/>  {<br/>    "uuid": "3F2504E0-4F89-11D3-9A0C-0305E82C3302",<br/>    "titre": "Marie et Juana, une histoire enflammée",<br/>    "artiste": "Ronald McDonald",<br/>    "lieu": "Centre Bell, Montréal",<br/>    "date": "2016-06-26 16:40:18",<br/>    "montant": "4.20"<br/>  }<br/>]</pre>
                                 </td>
                             </tr>
                         </table>
@@ -532,34 +543,55 @@
 
                               <tr>
                                   <td>201</td>
-                                  <td>Created</td>
+                                  <td>Tous les billets ont été ajoutés avec succès.</td>
                               </tr>
 
                               <tr>
                                   <td>400</td>
                                   <td>
-                                      <pre>{<br/>  "error": "missing_token",<br/>  "error_description": "La requête n’a pas de jeton"<br/>}</pre>
+                                      <pre>{<br/>  "error": "invalid_request",<br/>  "error_description": "The content-type must be application/json."<br/>}</pre>
                                   </td>
                               </tr>
 
                               <tr>
                                   <td>400</td>
                                   <td>
-                                      <pre>{<br/>  "error": "invalid_ticket",<br/>  "error_description": "La requête comporte un ou des billets invalides"<br/>}</pre>
+                                      <pre>{<br/>  "error": "invalid_request",<br/>  "error_description": "The Json format is invalid. Expecting an array of Json."<br/>}</pre>
+                                  </td>
+                              </tr>
+
+                              <tr>
+                                  <td>400</td>
+                                  <td>
+                                      <pre>{<br/>  "error": "invalid_request",<br/>  "error_description": "The tickets are invalid. Read the documentation."<br/>}</pre>
+                                  </td>
+                              </tr>
+
+                              <tr>
+                                  <td>400</td>
+                                  <td>
+                                      <pre>{<br/>  "error": "invalid_request",<br/>  "error_description": "The request is missing a required parameter, includes an<br/>    invalid parameter value, includes a parameter more than once, or is otherwise<br/>    malformed. Check the \"access token\" parameter."<br/>}</pre>
                                   </td>
                               </tr>
 
                               <tr>
                                   <td>401</td>
                                   <td>
-                                      <pre>{<br/>  "error": "invalid_token",<br/>  "error_description": "Le jeton est invalide"<br/>}</pre>
+                                      <pre>{<br/>  "error": "access_denied",<br/>  "error_description": "The resource owner or authorization server denied the<br/>    request."<br/>}</pre>
+                                  </td>
+                              </tr>
+
+                              <tr>
+                                  <td>404</td>
+                                  <td>
+                                      <pre>{<br/>  "error": "not_found",<br/>  "error_description": "The token owner is not an existing user."<br/>}</pre>
                                   </td>
                               </tr>
 
                               <tr>
                                   <td>405</td>
                                   <td>
-                                      <pre>{<br/>  "error": "method_not_allowed",<br/>  "error_description": "La méthode utilisée n’est pas autorisée"<br/>}</pre>
+                                      <pre>{<br/>  "error": "method_not_allowed",<br/>  "error_description": "The client is not authorized to use this method."<br/>}</pre>
                                   </td>
                               </tr>
 
