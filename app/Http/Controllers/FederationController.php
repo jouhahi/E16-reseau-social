@@ -33,7 +33,7 @@ class FederationController extends Controller
         $prenom =  Auth::user()->prenom;
         
         
-        return View::make('federation.federation', ['params' => $formParams, 'client' => $authParams['client'], 'user'=>$prenom.$nom]);
+        return View::make('federation.federation', ['params' => $formParams, 'client' => $authParams['client'], 'user'=>$prenom." ".$nom]);
     }
 
     /*
