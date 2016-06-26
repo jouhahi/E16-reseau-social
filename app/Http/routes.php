@@ -74,5 +74,8 @@ Route::group(['middleware' => 'https'], function () {
     // Route affichage de la page Profil
     Route::get('profil', 'ProfilController@showProfile');
 
+    // Route affichage de la page Profil
+    Route::get('spectacles', 'SpectaclesController@index');
+    //Route::get('spectacles/tous', 'SpectaclesController@all');
 
 });

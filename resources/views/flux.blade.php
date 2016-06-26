@@ -129,8 +129,8 @@
           <li class="hasSubmenu">
             <a href="#timeline"><i class="md-event"></i> <span>Mes spectacles</span></a>
             <ul id="timeline">
-              <li><a href="spectacle-futur.blade.php"><i class="fa fa-circle-o"></i> <span>Futurs</span></a></li>
-              <li><a href="spectacle-tous.blade.php"><i class="fa fa-circle-o"></i> <span>Tous</span></a></li>
+              <li><a href="/spectacles"><i class="fa fa-circle-o"></i> <span>Futurs</span></a></li>
+              <li><a href="/spectacles"><i class="fa fa-circle-o"></i> <span>Tous</span></a></li>
             </ul>
           </li>
           <li class=""><a href="/profil"><i class="icon-user-1"></i> <span>Profil</span></a></li>

@@ -17,7 +17,9 @@
 </head>
 
 <body>
-
+Céline Dion
+Montréal
+11 Juin 2016
   <!-- Wrapper required for sidebar transitions -->
   <div class="st-container">
 
@@ -125,15 +127,15 @@
       <div data-scrollable>
         <ul class="sidebar-menu">
           <li class="category">Navigation</li>
-          <li class=""><a href="flux.blade.php"><i class="icon-worldwide"></i> <span>Flux</span></a></li>
+          <li class=""><a href="/flux"><i class="icon-worldwide"></i> <span>Flux</span></a></li>
           <li class="hasSubmenu open">
             <a href="#timeline"><i class="md-event"></i> <span>Mes spectacles</span></a>
             <ul class="in" id="timeline">
-              <li><a href="spectacle-futur.blade.php"><i class="fa fa-circle-o"></i> <span>Futurs</span></a></li>
-              <li class="active"><a href="spectacle-tous.blade.php"><i class="fa fa-circle-o"></i> <span>Tous</span></a></li>
+              <li><a href="/spectacles"><i class="fa fa-circle-o"></i> <span>Futurs</span></a></li>
+              <li class="active"><a href="/spectacles"><i class="fa fa-circle-o"></i> <span>Tous</span></a></li>
             </ul>
           </li>
-          <li class=""><a href="profil.blade.php"><i class="icon-user-1"></i> <span>Profil</span></a></li>
+          <li class=""><a href="/profil"><i class="icon-user-1"></i> <span>Profil</span></a></li>
           <li class=""><a href="amis.blade.php"><i class="fa fa-group"></i> <span>Mes amis</span></a></li>
         </ul>
       </div>
@@ -158,107 +160,47 @@
 
             <div class="row">
               <div class="col-md-9">
-                <ul class="timeline-list">
-                  <li class="media media-clearfix-xs">
-                    <div class="media-left">
-                      <div class="user-wrapper">
-                        <img src="images/people/110/guy-5.jpg" alt="people" class="img-circle" width="80" />
-                        <div>Joey D.</div>
-                        <div class="date">11 MAI</div>
-                      </div>
-                    </div>
-                    <div class="media-body" id="mai">
-                      <div class="media-body-wrapper">
-                        <div class="row">
-                          <div class="col-md-10 col-lg-8">
-                            <div class="panel panel-default event">
-                              <div class="panel-heading title">
-                                Céline Dion
-                              </div>
-                              <ul class="icon-list icon-list-block">
-                                <li><i class="fa fa-globe"></i> Montréal</li>
-                                <li><i class="fa fa-calendar-o"></i> 11 Juin 2016</li>
-                                <li><i class="fa fa-clock-o"></i> 5:50 PM</li>
-                                <li>
-                                  <a href="../../../../../Users/Joey/Downloads/E16-reseau-social-prototype/billet.pdf" class="btn btn-default btn-sm">Imprimer les billets <i class="fa fa-print"></i></a>
-                                </li>
-                              </ul>
-                              <div class="clearfix"></div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </li>
-                </ul>
 
-                <ul class="timeline-list">
-                  <li class="media media-clearfix-xs">
-                    <div class="media-left">
-                      <div class="user-wrapper">
-                        <img src="images/people/110/guy-4.jpg" alt="people" class="img-circle" width="80" />
-                        <div>Jonny D.</div>
-                        <div class="date">11 JUIN</div>
-                      </div>
-                    </div>
-                    <div class="media-body" id="juin">
-                      <div class="media-body-wrapper">
-                        <div class="row">
-                          <div class="col-md-10 col-lg-8">
-                            <div class="panel panel-default event">
-                              <div class="panel-heading title">
-                                Céline Dion
-                              </div>
-                              <ul class="icon-list icon-list-block">
-                                <li><i class="fa fa-globe"></i> Montréal</li>
-                                <li><i class="fa fa-calendar-o"></i> 11 Juin 2016</li>
-                                <li><i class="fa fa-clock-o"></i> 5:50 PM</li>
-                                <li>
-                                  <a href="../../../../../Users/Joey/Downloads/E16-reseau-social-prototype/billet.pdf" class="btn btn-default btn-sm">Imprimer les billets <i class="fa fa-print"></i></a>
-                                </li>
-                              </ul>
-                              <div class="clearfix"></div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </li>
-                </ul>
+                <!--Début de la zone d'affichage de spectacle-->
+                @foreach ($spectacles as $spectacle)
 
-                <ul class="timeline-list">
-                  <li class="media media-clearfix-xs">
-                    <div class="media-left">
-                      <div class="user-wrapper">
-                        <img src="images/people/110/guy-1.jpg" alt="people" class="img-circle" width="80" />
-                        <div>Bob G.</div>
-                        <div class="date">11 JUILLET</div>
-                      </div>
-                    </div>
-                    <div class="media-body" id="juillet">
-                      <div class="media-body-wrapper">
-                        <div class="row">
-                          <div class="col-md-10 col-lg-8">
-                            <div class="panel panel-default event">
-                              <div class="panel-heading title">
-                                Céline Dion
-                              </div>
-                              <ul class="icon-list icon-list-block">
-                                <li><i class="fa fa-globe"></i> Montréal</li>
-                                <li><i class="fa fa-calendar-o"></i> 11 Juin 2016</li>
-                                <li><i class="fa fa-clock-o"></i> 5:50 PM</li>
-                                <li>
-                                  <a href="../../../../../Users/Joey/Downloads/E16-reseau-social-prototype/billet.pdf" class="btn btn-default btn-sm">Imprimer les billets <i class="fa fa-print"></i></a>
-                                </li>
-                              </ul>
-                              <div class="clearfix"></div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </li>
-                </ul>
+                  <ul class="timeline-list">
+                    <li class="media media-clearfix-xs">
+                      <div class="media-left">
+                        <div class="user-wrapper">
+                          <!-- <img src="images/people/110/guy-5.jpg" alt="people" class="img-circle" width="80" />-->
+                           <div>{{ $spectacle->titre }}</div>
+                           <div class="date">{{substr($spectacle->date,0,-8)}}</div>
+                         </div>
+                       </div>
+                       <div class="media-body" id="mai">
+                         <div class="media-body-wrapper">
+                           <div class="row">
+                             <div class="col-md-10 col-lg-8">
+                               <div class="panel panel-default event">
+                                 <div class="panel-heading title">
+                                   {{$spectacle->artiste}}
+                                 </div>
+                                 <ul class="icon-list icon-list-block">
+                                   <li><i class="fa fa-globe"></i>{{$spectacle->lieu}}</li>
+                                   <li><i class="fa fa-calendar-o"></i>{{substr($spectacle->date,0,-8)}}</li>
+                                   <li><i class="fa fa-clock-o"></i>{{substr($spectacle->date,11)}}</li>
+                                   <li>
+                                     <a href="../../../../../Users/Joey/Downloads/E16-reseau-social-prototype/billet.pdf" class="btn btn-default btn-sm">Imprimer les billets <i class="fa fa-print"></i></a>
+                                   </li>
+                                 </ul>
+                                 <div class="clearfix"></div>
+                               </div>
+                             </div>
+                           </div>
+                         </div>
+                       </div>
+                     </li>
+                   </ul>
+
+                 @endforeach
+                 <!--Fin de la zone d'affichage de spectacle-->
+
               </div>
               <div class="col-md-3">
                 <ul class="nav timeline-months">
