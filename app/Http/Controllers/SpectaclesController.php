@@ -19,14 +19,9 @@ class SpectaclesController extends Controller
     public function index()
     {
         $user = Auth::id();
-
-        if()
         $spectacles = Ticket::where('user_id',$user)
                         ->orderBy('date','desc')
                         ->get();
-        else{
-
-        }
 
         return view('spectacle-tous',['spectacles' => $spectacles]);
     }
