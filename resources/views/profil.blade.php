@@ -187,32 +187,32 @@
                           <li class="padding-v-5">
                             <div class="row">
                               <div class="col-sm-4"><span class="text-muted">Courriel</span></div>
-                              <div class="col-sm-8">joey@etsmtl.ca</div>
+                              <div class="col-sm-8"><?php echo $user["email"]; ?></div>
                             </div>
                           </li>
 
                           <li class="padding-v-5">
                             <div class="row">
                               <div class="col-sm-4"><span class="text-muted">Adresse</span></div>
-                              <div class="col-sm-8">420 rue BlazeIt</div>
+                              <div class="col-sm-8"><?php echo $user["adresse"]; ?></div>
                             </div>
                           </li>
                           <li class="padding-v-5">
                             <div class="row">
                               <div class="col-sm-4"><span class="text-muted">Ville</span></div>
-                              <div class="col-sm-8">Montréal</div>
+                              <div class="col-sm-8"><?php echo $user["ville"]; ?></div>
                             </div>
                           </li>
                           <li class="padding-v-5">
                             <div class="row">
                               <div class="col-sm-4"><span class="text-muted">Code postal</span></div>
-                              <div class="col-sm-8">A1A 1A1</div>
+                              <div class="col-sm-8"><?php echo $user["code_postal"]; ?></div>
                             </div>
                           </li>
                           <li class="padding-v-5">
                             <div class="row">
                               <div class="col-sm-4"><span class="text-muted">Province</span></div>
-                              <div class="col-sm-8">Québec</div>
+                              <div class="col-sm-8"><?php echo $user["province"]; ?></div>
                             </div>
                           </li>
                         </ul>

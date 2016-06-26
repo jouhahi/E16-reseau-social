@@ -125,7 +125,7 @@
       <div data-scrollable>
         <ul class="sidebar-menu">
           <li class="category">Navigation</li>
-          <li class=" active "><a href="flux.blade.php"><i class="icon-worldwide"></i> <span>Flux</span></a></li>
+          <li class=" active "><a href="/flux"><i class="icon-worldwide"></i> <span>Flux</span></a></li>
           <li class="hasSubmenu">
             <a href="#timeline"><i class="md-event"></i> <span>Mes spectacles</span></a>
             <ul id="timeline">
@@ -133,7 +133,7 @@
               <li><a href="spectacle-tous.blade.php"><i class="fa fa-circle-o"></i> <span>Tous</span></a></li>
             </ul>
           </li>
-          <li class=""><a href="profil.blade.php"><i class="icon-user-1"></i> <span>Profil</span></a></li>
+          <li class=""><a href="/profil"><i class="icon-user-1"></i> <span>Profil</span></a></li>
           <li class=""><a href="amis.blade.php"><i class="fa fa-group"></i> <span>Mes amis</span></a></li>
         </ul>
       </div>

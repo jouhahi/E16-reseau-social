@@ -69,6 +69,10 @@ Route::group(['middleware' => 'https'], function () {
 
 
     // Route pour l'affichage du flux
-    Route::get('/flux', 'FluxController@index');
+    Route::get('flux', 'FluxController@index');
+
+    // Route affichage de la page Profil
+    Route::get('profil', 'ProfilController@showProfile');
+
 
 });
