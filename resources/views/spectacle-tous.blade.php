@@ -17,9 +17,7 @@
 </head>
 
 <body>
-Céline Dion
-Montréal
-11 Juin 2016
+
   <!-- Wrapper required for sidebar transitions -->
   <div class="st-container">
 
@@ -102,9 +100,9 @@ Montréal
                 <img src="images/people/50/guy-5.jpg" width="35" alt="Bill" class="img-circle" /> Joey <span class="caret"></span>
               </a>
               <ul class="dropdown-menu" role="menu">
-                <li><a href="profil.blade.php">Profil</a></li>
-                <li><a href="notifications.blade.php">Notifications</a></li>
-                <li><a href="deconnexion.blade.php">Déconnexion</a></li>
+                <li><a href="/profil">Profil</a></li>
+                <li><a href="/notifications">Notifications</a></li>
+                <li><a href="/deconnexion">Déconnexion</a></li>
               </ul>
             </li>
           </ul>
@@ -131,7 +129,7 @@ Montréal
           <li class="hasSubmenu open">
             <a href="#timeline"><i class="md-event"></i> <span>Mes spectacles</span></a>
             <ul class="in" id="timeline">
-              <li><a href="/spectacles"><i class="fa fa-circle-o"></i> <span>Futurs</span></a></li>
+              <li><a href="/spectacles/futur"><i class="fa fa-circle-o"></i> <span>Futurs</span></a></li>
               <li class="active"><a href="/spectacles"><i class="fa fa-circle-o"></i> <span>Tous</span></a></li>
             </ul>
           </li>

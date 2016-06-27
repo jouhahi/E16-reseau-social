@@ -9,162 +9,168 @@
   <meta name="author" content="Joey Dubé, Pascal Henrichon, Javier Sanchez">
   <title>QuiVa?</title>
   <!-- Le gabarit de l'application provient de http://themekit-v4.themekit.io/ et l'auteur est mosaicpro. -->
-
+  <!--
   <link href="css/vendor/all.css" rel="stylesheet">
-
   <link href="css/app/app.css" rel="stylesheet">
+  -->
+  <link rel="stylesheet" href="{{ URL::asset('css/vendor/all.css') }}"/>
+  <link rel="stylesheet" href="{{ URL::asset('css/app/app.css') }}"/>
 
 </head>
 
 <body>
 
-  <!-- Wrapper required for sidebar transitions -->
-  <div class="st-container">
+<!-- Wrapper required for sidebar transitions -->
+<div class="st-container">
 
-    <div class="navbar navbar-main navbar-default navbar-fixed-top" role="navigation">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <a href="#sidebar-menu" data-effect="st-effect-1" data-toggle="sidebar-menu" class="toggle pull-left visible-xs"><i class="fa fa-bars"></i></a>
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-nav">
-            <span class="sr-only">Afficher le menu</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a href="#sidebar-chat" data-toggle="sidebar-menu" data-effect="st-effect-1" class="toggle pull-right visible-xs "><i class="fa fa-comments"></i></a>
-          <a class="navbar-brand navbar-brand-primary hidden-xs" href="flux.blade.php">QuiVa? <span class="md-notifications-on"></span></a>
-        </div>
-        <div class="collapse navbar-collapse" id="main-nav">
-          <ul class="nav navbar-nav hidden-xs">
-            <!-- messages -->
-            <li class="dropdown notifications hidden-xs hidden-sm">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <i class="fa fa-envelope-o"></i>
-
-              </a>
-              <ul class="dropdown-menu">
-                <li class="media">
-                  <div class="media-left">
-                    <a href="#">
-                      <img class="media-object thumb" src="images/people/50/guy-2.jpg" alt="people">
-                    </a>
-                  </div>
-                  <div class="media-body">
-                    <div class="pull-right">
-                      <span class="label label-default">5 min</span>
-                    </div>
-                    <h5 class="media-heading">Adrian D.</h5>
-
-                    <p class="margin-none">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                  </div>
-                </li>
-                <li class="media">
-                  <div class="media-left">
-                    <a href="#">
-                      <img class="media-object thumb" src="images/people/50/woman-7.jpg" alt="people">
-                    </a>
-                  </div>
-
-                  <div class="media-body">
-                    <div class="pull-right">
-                      <span class="label label-default">2 jours</span>
-                    </div>
-                    <h5 class="media-heading">Jane B.</h5>
-                    <p class="margin-none">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                  </div>
-                </li>
-                <li class="media">
-                  <div class="media-left">
-                    <a href="#">
-                      <img class="media-object thumb" src="images/people/50/guy-8.jpg" alt="people">
-                    </a>
-                  </div>
-
-                  <div class="media-body">
-                    <div class="pull-right">
-                      <span class="label label-default">3 jours</span>
-                    </div>
-                    <h5 class="media-heading">Andrew M.</h5>
-                    <p class="margin-none">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                  </div>
-                </li>
-              </ul>
-            </li>
-            <!-- // END messages -->
-          </ul>
-
-          <ul class="nav navbar-nav navbar-user">
-            <!-- User -->
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <img src="images/people/50/guy-5.jpg" width="35" alt="Bill" class="img-circle" /> Joey <span class="caret"></span>
-              </a>
-              <ul class="dropdown-menu" role="menu">
-                <li><a href="profil.blade.php">Profil</a></li>
-                <li><a href="notifications.blade.php">Notifications</a></li>
-                <li><a href="deconnexion.blade.php">Déconnexion</a></li>
-              </ul>
-            </li>
-          </ul>
-
-          <form class="navbar-form margin-none navbar-left hidden-xs " action="rechercher.blade.php">
-            <!-- Search -->
-            <div class="search-1">
-              <div class="input-group">
-                <span class="input-group-addon"><i class="icon-search"></i></span>
-                <input type="text" class="form-control" placeholder="Trouver un ami">
-              </div>
-            </div>
-          </form>
-        </div>
+  <div class="navbar navbar-main navbar-default navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a href="#sidebar-menu" data-effect="st-effect-1" data-toggle="sidebar-menu" class="toggle pull-left visible-xs"><i class="fa fa-bars"></i></a>
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-nav">
+          <span class="sr-only">Afficher le menu</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a href="#sidebar-chat" data-toggle="sidebar-menu" data-effect="st-effect-1" class="toggle pull-right visible-xs "><i class="fa fa-comments"></i></a>
+        <a class="navbar-brand navbar-brand-primary hidden-xs" href="flux.blade.php">QuiVa? <span class="md-notifications-on"></span></a>
       </div>
-    </div>
+      <div class="collapse navbar-collapse" id="main-nav">
+        <ul class="nav navbar-nav hidden-xs">
+          <!-- messages -->
+          <li class="dropdown notifications hidden-xs hidden-sm">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <i class="fa fa-envelope-o"></i>
 
-    <!-- Sidebar component with st-effect-1 (set on the toggle button within the navbar) -->
-    <div class="sidebar left sidebar-size-2 sidebar-offset-0 sidebar-visible-desktop sidebar-visible-mobile sidebar-skin-dark" id="sidebar-menu" data-type="collapse">
-      <div data-scrollable>
-        <ul class="sidebar-menu">
-          <li class="category">Navigation</li>
-          <li class=""><a href="flux.blade.php"><i class="icon-worldwide"></i> <span>Flux</span></a></li>
-          <li class="hasSubmenu open">
-            <a href="#timeline"><i class="md-event"></i> <span>Mes spectacles</span></a>
-            <ul class="in" id="timeline">
-              <li class="active"><a href="spectacle-futur.blade.php"><i class="fa fa-circle-o"></i> <span>Futurs</span></a></li>
-              <li><a href="spectacle-tous.blade.php"><i class="fa fa-circle-o"></i> <span>Tous</span></a></li>
+            </a>
+            <ul class="dropdown-menu">
+              <li class="media">
+                <div class="media-left">
+                  <a href="#">
+                    <img class="media-object thumb" src="images/people/50/guy-2.jpg" alt="people">
+                  </a>
+                </div>
+                <div class="media-body">
+                  <div class="pull-right">
+                    <span class="label label-default">5 min</span>
+                  </div>
+                  <h5 class="media-heading">Adrian D.</h5>
+
+                  <p class="margin-none">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                </div>
+              </li>
+              <li class="media">
+                <div class="media-left">
+                  <a href="#">
+                    <img class="media-object thumb" src="images/people/50/woman-7.jpg" alt="people">
+                  </a>
+                </div>
+
+                <div class="media-body">
+                  <div class="pull-right">
+                    <span class="label label-default">2 jours</span>
+                  </div>
+                  <h5 class="media-heading">Jane B.</h5>
+                  <p class="margin-none">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                </div>
+              </li>
+              <li class="media">
+                <div class="media-left">
+                  <a href="#">
+                    <img class="media-object thumb" src="images/people/50/guy-8.jpg" alt="people">
+                  </a>
+                </div>
+
+                <div class="media-body">
+                  <div class="pull-right">
+                    <span class="label label-default">3 jours</span>
+                  </div>
+                  <h5 class="media-heading">Andrew M.</h5>
+                  <p class="margin-none">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                </div>
+              </li>
             </ul>
           </li>
-          <li class=""><a href="profil.blade.php"><i class="icon-user-1"></i> <span>Profil</span></a></li>
-          <li class=""><a href="amis.blade.php"><i class="fa fa-group"></i> <span>Mes amis</span></a></li>
+          <!-- // END messages -->
         </ul>
+
+        <ul class="nav navbar-nav navbar-user">
+          <!-- User -->
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <img src={{ URL::asset('images/people/50/guy-5.jpg')}} width="35" alt="Bill" class="img-circle" /> Joey <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="/profil">Profil</a></li>
+              <li><a href="/notifications">Notifications</a></li>
+              <li><a href="/deconnexion">Déconnexion</a></li>
+            </ul>
+          </li>
+        </ul>
+
+        <form class="navbar-form margin-none navbar-left hidden-xs " action="rechercher.blade.php">
+          <!-- Search -->
+          <div class="search-1">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="icon-search"></i></span>
+              <input type="text" class="form-control" placeholder="Trouver un ami">
+            </div>
+          </div>
+        </form>
       </div>
     </div>
+  </div>
 
-    <!-- sidebar effects OUTSIDE of st-pusher: -->
-    <!-- st-effect-1, st-effect-2, st-effect-4, st-effect-5, st-effect-9, st-effect-10, st-effect-11, st-effect-12, st-effect-13 -->
+  <!-- Sidebar component with st-effect-1 (set on the toggle button within the navbar) -->
+  <div class="sidebar left sidebar-size-2 sidebar-offset-0 sidebar-visible-desktop sidebar-visible-mobile sidebar-skin-dark" id="sidebar-menu" data-type="collapse">
+    <div data-scrollable>
+      <ul class="sidebar-menu">
+        <li class="category">Navigation</li>
+        <li class=""><a href="/flux"><i class="icon-worldwide"></i> <span>Flux</span></a></li>
+        <li class="hasSubmenu open">
+          <a href="#timeline"><i class="md-event"></i> <span>Mes spectacles</span></a>
+          <ul class="in" id="timeline">
+            <li class="active"><a href="/spectacles/futur"><i class="fa fa-circle-o"></i> <span>Futurs</span></a></li>
+            <li><a href="/spectacles"><i class="fa fa-circle-o"></i> <span>Tous</span></a></li>
+          </ul>
+        </li>
+        <li class=""><a href="/profil"><i class="icon-user-1"></i> <span>Profil</span></a></li>
+        <li class=""><a href="amis.blade.php"><i class="fa fa-group"></i> <span>Mes amis</span></a></li>
+      </ul>
+    </div>
+  </div>
 
-    <!-- content push wrapper -->
-    <div class="st-pusher" id="content">
+  <!-- sidebar effects OUTSIDE of st-pusher: -->
+  <!-- st-effect-1, st-effect-2, st-effect-4, st-effect-5, st-effect-9, st-effect-10, st-effect-11, st-effect-12, st-effect-13 -->
 
-      <!-- sidebar effects INSIDE of st-pusher: -->
-      <!-- st-effect-3, st-effect-6, st-effect-7, st-effect-8, st-effect-14 -->
+  <!-- content push wrapper -->
+  <div class="st-pusher" id="content">
 
-      <!-- this is the wrapper for the content -->
-      <div class="st-content">
+    <!-- sidebar effects INSIDE of st-pusher: -->
+    <!-- st-effect-3, st-effect-6, st-effect-7, st-effect-8, st-effect-14 -->
 
-        <!-- extra div for emulating position:fixed of the menu -->
-        <div class="st-content-inner">
+    <!-- this is the wrapper for the content -->
+    <div class="st-content">
 
-          <div class="container-fluid">
+      <!-- extra div for emulating position:fixed of the menu -->
+      <div class="st-content-inner">
 
-            <div class="row">
-              <div class="col-md-9">
+        <div class="container-fluid">
+
+          <div class="row">
+            <div class="col-md-9">
+
+              <!--Début de la zone d'affichage de spectacle-->
+              @foreach ($spectacles as $spectacle)
+
                 <ul class="timeline-list">
                   <li class="media media-clearfix-xs">
                     <div class="media-left">
                       <div class="user-wrapper">
-                        <img src="images/people/110/guy-5.jpg" alt="people" class="img-circle" width="80" />
-                        <div>Joey D.</div>
-                        <div class="date">11 MAI</div>
+                        <!-- <img src="images/people/110/guy-5.jpg" alt="people" class="img-circle" width="80" />-->
+                        <div>{{ $spectacle->titre }}</div>
+                        <div class="date">{{substr($spectacle->date,0,-8)}}</div>
                       </div>
                     </div>
                     <div class="media-body" id="mai">
@@ -173,17 +179,15 @@
                           <div class="col-md-10 col-lg-8">
                             <div class="panel panel-default event">
                               <div class="panel-heading title">
-                                Céline Dion
+                                {{$spectacle->artiste}}
                               </div>
                               <ul class="icon-list icon-list-block">
-                                <li><i class="fa fa-globe"></i> Montréal</li>
-                                <li><i class="fa fa-calendar-o"></i> 11 Juin 2016</li>
-                                <li><i class="fa fa-clock-o"></i> 5:50 PM</li>
+                                <li><i class="fa fa-globe"></i>{{$spectacle->lieu}}</li>
+                                <li><i class="fa fa-calendar-o"></i>{{substr($spectacle->date,0,-8)}}</li>
+                                <li><i class="fa fa-clock-o"></i>{{substr($spectacle->date,11)}}</li>
                                 <li>
-                                  <a href="donner.blade.php" class="btn btn-default btn-sm">Donner un billet <i class="fa fa-share"></i></a>
                                   <a href="../../../../../Users/Joey/Downloads/E16-reseau-social-prototype/billet.pdf" class="btn btn-default btn-sm">Imprimer les billets <i class="fa fa-print"></i></a>
                                 </li>
-
                               </ul>
                               <div class="clearfix"></div>
                             </div>
@@ -194,112 +198,44 @@
                   </li>
                 </ul>
 
-                <ul class="timeline-list">
-                  <li class="media media-clearfix-xs">
-                    <div class="media-left">
-                      <div class="user-wrapper">
-                        <img src="images/people/110/guy-4.jpg" alt="people" class="img-circle" width="80" />
-                        <div>Jonny D.</div>
-                        <div class="date">11 JUIN</div>
-                      </div>
-                    </div>
-                    <div class="media-body" id="juin">
-                      <div class="media-body-wrapper">
-                        <div class="row">
-                          <div class="col-md-10 col-lg-8">
-                            <div class="panel panel-default event">
-                              <div class="panel-heading title">
-                                Céline Dion
-                              </div>
-                              <ul class="icon-list icon-list-block">
-                                <li><i class="fa fa-globe"></i> Montréal</li>
-                                <li><i class="fa fa-calendar-o"></i> 11 Juin 2016</li>
-                                <li><i class="fa fa-clock-o"></i> 5:50 PM</li>
-                                <li>
-                                  <a href="donner.blade.php" class="btn btn-default btn-sm">Donner un billet <i class="fa fa-share"></i></a>
-                                  <a href="../../../../../Users/Joey/Downloads/E16-reseau-social-prototype/billet.pdf" class="btn btn-default btn-sm">Imprimer les billets <i class="fa fa-print"></i></a>
-                                </li>
+            @endforeach
+            <!--Fin de la zone d'affichage de spectacle-->
 
-                              </ul>
-                              <div class="clearfix"></div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </li>
-                </ul>
-
-                <ul class="timeline-list">
-                  <li class="media media-clearfix-xs">
-                    <div class="media-left">
-                      <div class="user-wrapper">
-                        <img src="images/people/110/guy-1.jpg" alt="people" class="img-circle" width="80" />
-                        <div>Bob G.</div>
-                        <div class="date">11 JUILLET</div>
-                      </div>
-                    </div>
-                    <div class="media-body" id="juillet">
-                      <div class="media-body-wrapper">
-                        <div class="row">
-                          <div class="col-md-10 col-lg-8">
-                            <div class="panel panel-default event">
-                              <div class="panel-heading title">
-                                Céline Dion
-                              </div>
-                              <ul class="icon-list icon-list-block">
-                                <li><i class="fa fa-globe"></i> Montréal</li>
-                                <li><i class="fa fa-calendar-o"></i> 11 Juin 2016</li>
-                                <li><i class="fa fa-clock-o"></i> 5:50 PM</li>
-                                <li>
-                                  <a href="donner.blade.php" class="btn btn-default btn-sm">Donner un billet <i class="fa fa-share"></i></a>
-                                  <a href="../../../../../Users/Joey/Downloads/E16-reseau-social-prototype/billet.pdf" class="btn btn-default btn-sm">Imprimer les billets <i class="fa fa-print"></i></a>
-                                </li>
-
-                              </ul>
-                              <div class="clearfix"></div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-              <div class="col-md-3">
-                <ul class="nav timeline-months">
-                  <li class="active"><a href="#mai"><i class="fa fa-calendar fa-fw"></i>Mai</a></li>
-                  <li><a href="#juin"><i class="fa fa-calendar fa-fw"></i>Juin</a></li>
-                  <li><a href="#juillet"><i class="fa fa-calendar fa-fw"></i>Juillet</a></li>
-                  <li><a href="#aout"><i class="fa fa-calendar fa-fw"></i>Août</a></li>
-                  <li><a href="#septembre"><i class="fa fa-calendar fa-fw"></i>Septembre</a></li>
-                </ul>
-              </div>
             </div>
-
+            <div class="col-md-3">
+              <ul class="nav timeline-months">
+                <li class="active"><a href="#mai"><i class="fa fa-calendar fa-fw"></i>Mai</a></li>
+                <li><a href="#juin"><i class="fa fa-calendar fa-fw"></i>Juin</a></li>
+                <li><a href="#juillet"><i class="fa fa-calendar fa-fw"></i>Juillet</a></li>
+                <li><a href="#aout"><i class="fa fa-calendar fa-fw"></i>Août</a></li>
+                <li><a href="#septembre"><i class="fa fa-calendar fa-fw"></i>Septembre</a></li>
+              </ul>
+            </div>
           </div>
 
         </div>
-        <!-- /st-content-inner -->
 
       </div>
-      <!-- /st-content -->
+      <!-- /st-content-inner -->
 
     </div>
-    <!-- /st-pusher -->
-
-    <footer class="footer">
-      <strong>QuiVa?</strong> 1.0.0 &copy; Copyright 2016 - Joey Dubé, Pascal Henrichon, Javier Sanchez
-    </footer>
+    <!-- /st-content -->
 
   </div>
-  <!-- /st-container -->
+  <!-- /st-pusher -->
 
-  <script src="js/app/config_site.js"></script>
+  <footer class="footer">
+    <strong>QuiVa?</strong> 1.0.0 &copy; Copyright 2016 - Joey Dubé, Pascal Henrichon, Javier Sanchez
+  </footer>
 
-  <script src="js/vendor/all.js"></script>
+</div>
+<!-- /st-container -->
 
-  <script src="js/app/app.js"></script>
+<script src="js/app/config_site.js"></script>
+
+<script src="js/vendor/all.js"></script>
+
+<script src="js/app/app.js"></script>
 
 </body>
 

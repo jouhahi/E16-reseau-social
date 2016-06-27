@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Ticket;
 use Auth;
+use DateTime;
 
 
 class SpectaclesController extends Controller
@@ -16,14 +17,31 @@ class SpectaclesController extends Controller
         $this->middleware('auth');
     }
 
-    public function index()
+
+    public function showTous()
     {
         $user = Auth::id();
+
         $spectacles = Ticket::where('user_id',$user)
-                        ->orderBy('date','desc')
-                        ->get();
+                            ->orderBy('date','desc')
+                            ->get();
 
         return view('spectacle-tous',['spectacles' => $spectacles]);
+
+    }
+
+
+    public function showFutur()
+    {
+        $user = Auth::id();
+
+
+        $spectacles = Ticket::where('user_id',$user)
+            ->where('date','>',new DateTime('today'))
+            ->orderBy('date','asc')
+            ->get();
+
+        return view('spectacle-futur',['spectacles' => $spectacles]);
     }
 
     

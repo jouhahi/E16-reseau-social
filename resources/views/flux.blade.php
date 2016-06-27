@@ -129,7 +129,7 @@
           <li class="hasSubmenu">
             <a href="#timeline"><i class="md-event"></i> <span>Mes spectacles</span></a>
             <ul id="timeline">
-              <li><a href="/spectacles"><i class="fa fa-circle-o"></i> <span>Futurs</span></a></li>
+              <li><a href="/spectacles/futur"><i class="fa fa-circle-o"></i> <span>Futurs</span></a></li>
               <li><a href="/spectacles"><i class="fa fa-circle-o"></i> <span>Tous</span></a></li>
             </ul>
           </li>
